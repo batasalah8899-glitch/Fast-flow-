@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#04101e">
+<meta name="description" content="FastFlow — نظام محاسبي متكامل للمملكة العربية السعودية">
+<meta name="apple-mobile-web-app-title" content="FastFlow">
+<meta name="application-name" content="FastFlow">
+<meta name="msapplication-TileColor" content="#04101e">
+<meta name="msapplication-tap-highlight" content="no">
+<title>FastFlow — نظام محاسبي متكامل</title>
+<link rel="manifest" id="manifestLink">
+<!-- Apple Touch Icons -->
+<link rel="apple-touch-icon" id="appleIcon">
+<link rel="icon" type="image/png" id="favicon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;700;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary:#00c8e8;
+  --primary-dark:#0099bb;
+  --primary-light:#7aeeff;
+  --secondary:#0ea5e9;
+  --accent:#f59e0b;
+  --green:#10b981;
+  --red:#ef4444;
+  --bg-deep:#04101e;
+  --bg-dark:#071526;
+  --bg-card:#0d2038;
+  --bg-card2:#112844;
+  --text-primary:#e8f4ff;
+  --text-secondary:#7cb8d8;
+  --text-muted:#3a6080;
+  --border:rgba(0,200,232,0.15);
+  --glow:0 0 50px rgba(0,200,232,0.18);
+  --r:18px; --rs:10px;
+  --tr:all 0.32s cubic-bezier(.4,0,.2,1);
+  --far:'Cairo','Tajawal',sans-serif;
+  --fen:'Poppins',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:var(--far);background:var(--bg-deep);color:var(--text-primary);}
+
+.screen{display:none;height:100vh;flex-direction:column;}
+.screen.active{display:flex;}
+
+/* -------- LOGIN -------- */
+#loginScreen{
+  background:linear-gradient(155deg,#04101e 0%,#071d38 55%,#051628 100%);
+  align-items:center;justify-content:center;padding:24px 20px;
+  position:relative;overflow:hidden;
+}
+#loginScreen::before{content:'';position:absolute;top:-25%;left:-15%;width:70%;height:70%;
+  background:radial-gradient(ellipse,rgba(0,200,232,.14) 0%,transparent 70%);
+  animation:bp 5s ease-in-out infinite;pointer-events:none;}
+#loginScreen::after{content:'';position:absolute;bottom:-20%;right:-10%;width:55%;height:55%;
+  background:radial-gradient(ellipse,rgba(14,165,233,.09) 0%,transparent 70%);
+  animation:bp 6s ease-in-out infinite reverse;pointer-events:none;}
+@keyframes bp{0%,100%{opacity:.6;transform:scale(1);}50%{opacity:1;transform:scale(1.12);}}
+
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.particle{position:absolute;width:3px;height:3px;background:var(--primary);border-radius:50%;
+  opacity:0;animation:fu var(--d,8s) linear infinite var(--dl,0s);}
+@keyframes fu{0%{opacity:0;transform:translateY(100vh) scale(0);}10%{opacity:.6;}90%{opacity:.2;}100%{opacity:0;transform:translateY(-10vh) scale(1.5);}}
+
+.lbox{width:100%;max-width:390px;position:relative;z-index:2;animation:su .65s cubic-bezier(.4,0,.2,1);}
+@keyframes su{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+
+.llogo{text-align:center;margin-bottom:30px;}
+.lmark{width:82px;height:82px;background:linear-gradient(135deg,#00c8e8,#0ea5e9);border-radius:24px;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:2.2rem;
+  box-shadow:0 8px 36px rgba(0,200,232,.38),0 2px 8px rgba(0,0,0,.5);position:relative;overflow:hidden;}
+.lmark::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.18) 0%,transparent 55%);}
+.lname{font-family:var(--fen);font-size:2.1rem;font-weight:800;
+  background:linear-gradient(120deg,#00c8e8,#7aeeff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.5px;line-height:1;}
+.ltag{font-size:.72rem;color:var(--text-secondary);margin-top:5px;font-weight:300;letter-spacing:1.5px;text-transform:uppercase;}
+
+.lcard{background:rgba(13,32,56,.88);border:1px solid rgba(0,200,232,.2);border-radius:var(--r);
+  padding:30px 24px;backdrop-filter:blur(22px);box-shadow:0 24px 60px rgba(0,0,0,.5),var(--glow);}
+
+.lavatar{width:68px;height:68px;background:linear-gradient(135deg,#00c8e8,#0ea5e9);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:900;font-family:var(--fen);
+  color:#fff;margin:0 auto 16px;box-shadow:0 4px 22px rgba(0,200,232,.4);border:3px solid rgba(0,200,232,.3);}
+
+.lwel{text-align:center;margin-bottom:24px;}
+.lwel h2{font-size:1.12rem;font-weight:700;}
+.lwel p{font-size:.76rem;color:var(--text-secondary);margin-top:4px;}
+
+.fg{margin-bottom:15px;position:relative;}
+.fg label{display:block;font-size:.73rem;color:var(--text-secondary);margin-bottom:6px;font-weight:600;}
+.fi{width:100%;padding:13px 44px 13px 14px;background:rgba(255,255,255,.04);
+  border:1.5px solid rgba(0,200,232,.12);border-radius:var(--rs);color:var(--text-primary);
+  font-size:.9rem;font-family:var(--far);transition:var(--tr);outline:none;}
+.fi:focus{border-color:var(--primary);background:rgba(0,200,232,.06);box-shadow:0 0 0 3px rgba(0,200,232,.12);}
+.fi::placeholder{color:var(--text-muted);}
+.iico{position:absolute;right:13px;top:38px;color:var(--text-muted);font-size:.95rem;pointer-events:none;}
+
+.btnl{width:100%;padding:14px;background:linear-gradient(135deg,#00c8e8,#0099bb);border:none;
+  border-radius:var(--rs);color:#fff;font-size:.93rem;font-weight:700;font-family:var(--far);
+  cursor:pointer;transition:var(--tr);letter-spacing:.8px;position:relative;overflow:hidden;margin-top:6px;}
+.btnl::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,transparent 60%);}
+.btnl:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,200,232,.4);}
+.btnl:active{transform:translateY(0);}
+
+.div{text-align:center;margin:16px 0 13px;color:var(--text-muted);font-size:.74rem;position:relative;}
+.div::before,.div::after{content:'';position:absolute;top:50%;width:38%;height:1px;background:rgba(255,255,255,.07);}
+.div::before{left:0;}.div::after{right:0;}
+
+.btnr{width:100%;padding:12px;background:transparent;border:1.5px solid rgba(0,200,232,.2);
+  border-radius:var(--rs);color:var(--primary);font-size:.85rem;font-weight:600;font-family:var(--far);
+  cursor:pointer;transition:var(--tr);}
+.btnr:hover{background:rgba(0,200,232,.08);border-color:var(--primary);}
+
+.biorow{display:flex;justify-content:center;gap:14px;margin-top:17px;}
+.biob{width:50px;height:50px;background:rgba(0,200,232,.07);border:1.5px solid rgba(0,200,232,.18);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.3rem;transition:var(--tr);}
+.biob:hover{background:rgba(0,200,232,.15);border-color:var(--primary);}
+.biol{font-size:.59rem;color:var(--text-muted);text-align:center;margin-top:3px;}
+
+.ltopbar{position:absolute;top:16px;left:0;right:0;display:flex;justify-content:space-between;padding:0 20px;z-index:10;}
+.lpill{display:flex;gap:6px;}
+.lp{padding:5px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;color:var(--text-secondary);font-size:.69rem;cursor:pointer;transition:var(--tr);}
+.lp.on{background:rgba(0,200,232,.14);border-color:var(--primary);color:var(--primary);}
+.sabadge{display:flex;align-items:center;gap:5px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.28);
+  border-radius:20px;padding:5px 10px;font-size:.67rem;color:var(--green);}
+
+/* -------- REGISTER -------- */
+#registerScreen{background:linear-gradient(155deg,#04101e 0%,#071d38 55%,#051628 100%);
+  align-items:center;justify-content:center;padding:24px 20px;overflow-y:auto;}
+
+/* -------- APP -------- */
+#appScreen{background:var(--bg-deep);}
+
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:13px 17px;
+  background:var(--bg-dark);border-bottom:1px solid var(--border);flex-shrink:0;}
+.tnlogo{font-family:var(--fen);font-size:1.28rem;font-weight:800;
+  background:linear-gradient(120deg,#00c8e8,#7aeeff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.tnacts{display:flex;gap:9px;align-items:center;}
+.tnbtn{width:36px;height:36px;background:rgba(0,200,232,.07);border:1px solid rgba(0,200,232,.14);
+  border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.95rem;
+  transition:var(--tr);position:relative;}
+.tnbtn:hover{background:rgba(0,200,232,.14);border-color:var(--primary);}
+.nbadge{position:absolute;top:-4px;right:-4px;width:15px;height:15px;background:var(--accent);
+  border-radius:50%;font-size:.58rem;display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--bg-dark);color:#fff;}
+
+.appcont{flex:1;overflow-y:auto;padding:17px 17px 90px;-webkit-overflow-scrolling:touch;}
+.appcont::-webkit-scrollbar{width:3px;}
+.appcont::-webkit-scrollbar-thumb{background:rgba(0,200,232,.2);border-radius:3px;}
+
+.pview{display:none;} .pview.active{display:block;}
+
+/* KPI */
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;}
+.sht{font-size:.93rem;font-weight:700;} .shl{font-size:.72rem;color:var(--primary);cursor:pointer;font-weight:600;}
+
+.greet{margin-bottom:21px;}
+.ghi{font-size:.78rem;color:var(--text-secondary);}
+.gname{font-size:1.38rem;font-weight:700;margin-top:2px;}
+.gdate{font-size:.7rem;color:var(--text-muted);margin-top:3px;}
+
+.kgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.kcard{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);
+  padding:17px 14px;position:relative;overflow:hidden;cursor:pointer;transition:var(--tr);}
+.kcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--kc,var(--primary));}
+.kcard:nth-child(1){--kc:#00c8e8;}.kcard:nth-child(2){--kc:#0ea5e9;}
+.kcard:nth-child(3){--kc:#f59e0b;}.kcard:nth-child(4){--kc:#10b981;}
+.kcard:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.3);}
+.kico{font-size:1.45rem;margin-bottom:8px;display:block;}
+.kval{font-size:1.22rem;font-weight:800;font-family:var(--fen);line-height:1;}
+.klbl{font-size:.69rem;color:var(--text-secondary);margin-top:4px;}
+.ktrd{font-size:.65rem;margin-top:6px;display:flex;align-items:center;gap:4px;}
+.up{color:var(--green);}.dn{color:var(--red);}
+
+/* AI */
+.aip{background:var(--bg-card);border:1px solid rgba(0,200,232,.25);border-radius:var(--r);
+  padding:17px;margin-bottom:22px;position:relative;overflow:hidden;}
+.aip::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#00c8e8,#0ea5e9,#00c8e8);background-size:200% 100%;
+  animation:sh 2s linear infinite;}
+@keyframes sh{0%{background-position:0 0;}100%{background-position:200% 0;}}
+.aihd{display:flex;align-items:center;gap:9px;margin-bottom:11px;}
+.aidot{width:9px;height:9px;background:var(--primary);border-radius:50%;animation:pls 1.5s ease-in-out infinite;}
+@keyframes pls{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+.aitl{font-size:.88rem;font-weight:700;}
+.aibeta{padding:2px 7px;background:rgba(0,200,232,.12);border:1px solid rgba(0,200,232,.3);
+  border-radius:8px;font-size:.59rem;color:var(--primary);font-weight:700;}
+.aiins{font-size:.78rem;color:var(--text-secondary);line-height:1.6;margin-bottom:11px;}
+.aichips{display:flex;flex-wrap:wrap;gap:7px;}
+.achip{padding:6px 11px;background:rgba(0,200,232,.08);border:1px solid rgba(0,200,232,.2);
+  border-radius:20px;font-size:.7rem;color:var(--primary);cursor:pointer;transition:var(--tr);}
+.achip:hover{background:rgba(0,200,232,.16);}
+
+/* QA */
+.qagrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px;}
+.qaitem{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rs);
+  padding:13px 5px;text-align:center;cursor:pointer;transition:var(--tr);}
+.qaitem:hover{background:rgba(0,200,232,.08);border-color:var(--primary);transform:translateY(-2px);}
+.qaico{font-size:1.45rem;display:block;margin-bottom:5px;}
+.qalbl{font-size:.64rem;color:var(--text-secondary);line-height:1.35;}
+
+/* Chart */
+.chcard{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:17px;margin-bottom:22px;}
+.chbars{display:flex;align-items:flex-end;gap:7px;height:88px;margin-top:13px;}
+.bwrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end;}
+.bar{width:100%;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#00c8e8,rgba(0,200,232,.3));min-height:4px;}
+.bar.alt{background:linear-gradient(180deg,#0ea5e9,rgba(14,165,233,.3));}
+.blbl{font-size:.57rem;color:var(--text-muted);}
+
+/* Recent */
+.rlist{margin-bottom:22px;}
+.ritem{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rs);
+  padding:12px 13px;display:flex;align-items:center;gap:12px;margin-bottom:9px;cursor:pointer;transition:var(--tr);}
+.ritem:hover{background:var(--bg-card2);border-color:rgba(0,200,232,.3);}
+.rico{width:37px;height:37px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;}
+.rinfo{flex:1;min-width:0;}
+.rtit{font-size:.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rsub{font-size:.69rem;color:var(--text-secondary);margin-top:2px;}
+.ramt{font-family:var(--fen);font-size:.86rem;font-weight:700;text-align:left;flex-shrink:0;}
+.pos{color:var(--green);}.neg{color:var(--red);}.pen{color:var(--accent);}
+
+/* Bottom Nav */
+.bnav{display:flex;background:var(--bg-dark);border-top:1px solid var(--border);
+  padding:7px 0 calc(7px + env(safe-area-inset-bottom));flex-shrink:0;}
+.bni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:7px 4px;cursor:pointer;transition:var(--tr);position:relative;}
+.bni::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:0;height:3px;background:var(--primary);border-radius:0 0 3px 3px;transition:width .3s ease;}
+.bni.active .bnico{color:var(--primary);}.bni.active .bnlbl{color:var(--primary);}
+.bni.active::after{width:24px;}
+.bnico{font-size:1.22rem;color:var(--text-muted);transition:var(--tr);}
+.bnlbl{font-size:.57rem;color:var(--text-muted);transition:var(--tr);}
+
+/* Pages header */
+.phdr{display:flex;align-items:center;gap:13px;padding:12px 17px;
+  background:var(--bg-card);border-bottom:1px solid var(--border);flex-shrink:0;}
+.bck{width:34px;height:34px;background:rgba(0,200,232,.07);border:1px solid rgba(0,200,232,.15);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.95rem;
+  transition:var(--tr);flex-shrink:0;}
+.bck:hover{background:rgba(0,200,232,.14);border-color:var(--primary);}
+.phtl{font-size:1.02rem;font-weight:700;}
+
+.subcont{flex:1;overflow-y:auto;padding:17px 17px 90px;-webkit-overflow-scrolling:touch;}
+
+/* Filter tabs */
+.ftabs{display:flex;gap:7px;overflow-x:auto;margin-bottom:17px;scrollbar-width:none;padding-bottom:3px;}
+.ftabs::-webkit-scrollbar{display:none;}
+.ftab{padding:7px 14px;background:var(--bg-card);border:1px solid var(--border);
+  border-radius:20px;font-size:.72rem;color:var(--text-secondary);cursor:pointer;transition:var(--tr);white-space:nowrap;flex-shrink:0;}
+.ftab.active{background:rgba(0,200,232,.12);border-color:var(--primary);color:var(--primary);}
+
+/* Invoice cards */
+.invc{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);
+  padding:15px;margin-bottom:11px;cursor:pointer;transition:var(--tr);}
+.invc:hover{background:var(--bg-card2);border-color:rgba(0,200,232,.3);}
+.invtop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px;}
+.invnum{font-size:.78rem;color:var(--text-secondary);}
+.invclnt{font-size:.93rem;font-weight:700;margin-top:2px;}
+.invst{padding:4px 10px;border-radius:20px;font-size:.67rem;font-weight:700;flex-shrink:0;}
+.stpd{background:rgba(16,185,129,.12);color:var(--green);}
+.stpe{background:rgba(245,158,11,.12);color:var(--accent);}
+.stov{background:rgba(239,68,68,.12);color:var(--red);}
+.invbot{display:flex;justify-content:space-between;align-items:center;}
+.invdt{font-size:.7rem;color:var(--text-muted);}
+.invamt{font-family:var(--fen);font-size:1.03rem;font-weight:800;color:var(--primary);}
+
+/* Form sections */
+.fsec{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:17px;margin-bottom:13px;}
+.fsectit{font-size:.8rem;font-weight:700;color:var(--primary);margin-bottom:13px;display:flex;align-items:center;gap:7px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:11px;}
+.frow.full{grid-template-columns:1fr;}
+.fl{font-size:.69rem;color:var(--text-secondary);margin-bottom:5px;font-weight:600;}
+.ff{width:100%;padding:11px 12px;background:rgba(255,255,255,.04);border:1.5px solid rgba(0,200,232,.1);
+  border-radius:8px;color:var(--text-primary);font-size:.82rem;font-family:var(--far);transition:var(--tr);outline:none;}
+.ff:focus{border-color:var(--primary);background:rgba(0,200,232,.05);box-shadow:0 0 0 3px rgba(0,200,232,.1);}
+.ff::placeholder{color:var(--text-muted);}
+select.ff{appearance:none;cursor:pointer;}
+
+.ittbl{width:100%;border-collapse:collapse;font-size:.78rem;}
+.ittbl th{padding:8px 10px;background:rgba(0,200,232,.07);color:var(--primary);font-weight:700;text-align:right;border-bottom:1px solid var(--border);}
+.ittbl td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-primary);}
+.ittbl tr:last-child td{border-bottom:none;}
+.additem{width:100%;padding:10px;background:rgba(0,200,232,.06);border:1.5px dashed rgba(0,200,232,.3);
+  border-radius:8px;color:var(--primary);font-size:.8rem;font-family:var(--far);cursor:pointer;transition:var(--tr);
+  margin-top:10px;display:flex;align-items:center;justify-content:center;gap:7px;}
+.additem:hover{background:rgba(0,200,232,.1);}
+
+.totbox{background:var(--bg-card2);border-radius:var(--rs);padding:14px;margin-top:13px;}
+.trow{display:flex;justify-content:space-between;align-items:center;padding:5px 0;
+  font-size:.79rem;color:var(--text-secondary);border-bottom:1px solid rgba(255,255,255,.04);}
+.trow:last-child{border-bottom:none;}
+.tfin{font-size:.93rem;font-weight:700;color:var(--text-primary);padding-top:8px;margin-top:4px;border-top:1px solid var(--border);}
+.tamt{font-family:var(--fen);font-weight:700;color:var(--primary);}
+
+.zatca{display:flex;align-items:center;gap:10px;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.22);
+  border-radius:9px;padding:11px 13px;margin-top:13px;}
+.zatico{font-size:1.35rem;} .zatca .zt{font-weight:700;color:var(--green);font-size:.76rem;}
+.zatca .zs{color:var(--text-muted);font-size:.65rem;margin-top:2px;}
+
+.actrow{display:flex;gap:10px;margin-top:17px;}
+.btnp{flex:2;padding:13px;background:linear-gradient(135deg,#00c8e8,#0099bb);border:none;
+  border-radius:var(--rs);color:#fff;font-size:.86rem;font-weight:700;font-family:var(--far);
+  cursor:pointer;transition:var(--tr);display:flex;align-items:center;justify-content:center;gap:7px;}
+.btnp:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,200,232,.38);}
+.btns{flex:1;padding:13px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:var(--rs);color:var(--text-primary);font-size:.86rem;font-weight:600;font-family:var(--far);
+  cursor:pointer;transition:var(--tr);display:flex;align-items:center;justify-content:center;gap:7px;}
+.btns:hover{border-color:var(--primary);color:var(--primary);}
+
+/* Reports */
+.rtabs{display:flex;gap:7px;overflow-x:auto;margin-bottom:17px;scrollbar-width:none;}
+.rtabs::-webkit-scrollbar{display:none;}
+.rtab{padding:7px 13px;background:var(--bg-card);border:1px solid var(--border);
+  border-radius:20px;font-size:.7rem;color:var(--text-secondary);cursor:pointer;transition:var(--tr);white-space:nowrap;flex-shrink:0;}
+.rtab.active{background:rgba(0,200,232,.12);border-color:var(--primary);color:var(--primary);}
+.rsgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:17px;}
+.rsstat{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rs);padding:13px 9px;text-align:center;}
+.rssv{font-size:1.08rem;font-weight:800;font-family:var(--fen);}
+.rssl{font-size:.63rem;color:var(--text-secondary);margin-top:3px;}
+.rpcrd{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:17px;margin-bottom:15px;}
+.rptl{font-size:.83rem;font-weight:700;margin-bottom:13px;}
+.lcsv{width:100%;height:100%;}
+.rtblcard{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:15px;}
+.rthdr{display:grid;grid-template-columns:2fr 1fr 1fr;padding:9px 13px;background:rgba(0,200,232,.07);font-size:.69rem;color:var(--primary);font-weight:700;}
+.rtrow{display:grid;grid-template-columns:2fr 1fr 1fr;padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.04);
+  font-size:.78rem;transition:var(--tr);cursor:pointer;}
+.rtrow:last-child{border-bottom:none;}
+.rtrow:hover{background:var(--bg-card2);}
+
+/* Inventory */
+.invsrch{display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--rs);padding:10px 13px;margin-bottom:15px;}
+.invsrch input{flex:1;background:transparent;border:none;outline:none;color:var(--text-primary);font-size:.83rem;font-family:var(--far);}
+.invsrch input::placeholder{color:var(--text-muted);}
+.prodcard{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);
+  padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:var(--tr);}
+.prodcard:hover{background:var(--bg-card2);border-color:rgba(0,200,232,.3);}
+.prodimg{width:50px;height:50px;border-radius:11px;background:linear-gradient(135deg,rgba(0,200,232,.14),rgba(14,165,233,.08));
+  display:flex;align-items:center;justify-content:center;font-size:1.55rem;flex-shrink:0;}
+.prodinf{flex:1;}
+.prodnm{font-size:.88rem;font-weight:700;}
+.prodct{font-size:.68rem;color:var(--text-secondary);margin-top:2px;}
+.prodstk{text-align:left;flex-shrink:0;}
+.stkn{font-family:var(--fen);font-size:1.08rem;font-weight:800;}
+.stkl{font-size:.63rem;color:var(--text-muted);}
+.sok{color:var(--green);}.slow{color:var(--accent);}.sout{color:var(--red);}
+
+/* Settings */
+.stsec{margin-bottom:20px;}
+.ststl{font-size:.7rem;font-weight:700;color:var(--primary);letter-spacing:1px;text-transform:uppercase;margin-bottom:9px;padding:0 3px;}
+.stitem{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rs);
+  padding:13px 15px;display:flex;align-items:center;gap:12px;margin-bottom:7px;cursor:pointer;transition:var(--tr);}
+.stitem:hover{background:var(--bg-card2);}
+.siico{font-size:1.15rem;width:34px;text-align:center;flex-shrink:0;}
+.siinf{flex:1;}
+.sitl{font-size:.83rem;font-weight:600;}
+.sisb{font-size:.68rem;color:var(--text-secondary);margin-top:2px;}
+.siarr{color:var(--text-muted);font-size:.78rem;}
+.toggle{width:43px;height:23px;background:rgba(255,255,255,.1);border-radius:12px;position:relative;cursor:pointer;transition:var(--tr);flex-shrink:0;}
+.toggle.on{background:linear-gradient(135deg,#00c8e8,#0099bb);}
+.toggle::after{content:'';position:absolute;top:3px;right:3px;width:17px;height:17px;border-radius:50%;background:#fff;transition:var(--tr);}
+.toggle.on::after{right:calc(100% - 20px);}
+
+/* Voice btn */
+.vbtn{position:fixed;bottom:78px;right:17px;width:50px;height:50px;
+  background:linear-gradient(135deg,#00c8e8,#0099bb);border:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1.25rem;cursor:pointer;
+  box-shadow:0 6px 24px rgba(0,200,232,.4);z-index:80;transition:var(--tr);
+  animation:vpls 2s ease-in-out infinite;}
+@keyframes vpls{0%,100%{box-shadow:0 6px 24px rgba(0,200,232,.4);}
+  50%{box-shadow:0 6px 36px rgba(0,200,232,.65),0 0 0 8px rgba(0,200,232,.1);}}
+.vbtn:hover{transform:scale(1.08);}
+
+/* Toast */
+.toast{position:fixed;bottom:98px;left:50%;transform:translateX(-50%);
+  background:rgba(13,32,56,.95);color:var(--text-primary);
+  padding:11px 20px;border-radius:30px;font-size:.8rem;font-weight:600;
+  z-index:300;opacity:0;transition:opacity .3s;white-space:nowrap;
+  border:1px solid rgba(0,200,232,.3);backdrop-filter:blur(12px);
+  display:flex;align-items:center;gap:8px;}
+.toast.show{opacity:1;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="screen active">
+  <div class="particles" id="ptcls"></div>
+  <div class="ltopbar">
+    <div class="lpill">
+      <div class="lp on" onclick="setLang(this,'ar')">عربي</div>
+      <div class="lp" onclick="setLang(this,'en')">EN</div>
+    </div>
+    <div class="sabadge">🇸🇦 ZATCA معتمد</div>
+  </div>
+
+  <div class="lbox">
+    <div class="llogo">
+      <div class="lmark">⚡</div>
+      <div class="lname">FastFlow</div>
+      <div class="ltag">نظام محاسبي متكامل · Saudi ERP</div>
+    </div>
+    <div class="lcard">
+      <div class="lavatar">F</div>
+      <div class="lwel"><h2>مرحباً بك 👋</h2><p>سجّل دخولك للمتابعة</p></div>
+      <div class="fg">
+        <label>اسم المستخدم</label>
+        <span class="iico">👤</span>
+        <input class="fi" id="uinp" type="text" placeholder="أدخل اسم المستخدم">
+      </div>
+      <div class="fg">
+        <label>كلمة المرور</label>
+        <span class="iico">🔒</span>
+        <input class="fi" id="pinp" type="password" placeholder="أدخل كلمة المرور">
+      </div>
+      <button class="btnl" onclick="doLogin()">تسجيل الدخول</button>
+      <div class="div">أو</div>
+      <button class="btnr" onclick="showSc('registerScreen')">إنشاء حساب جديد</button>
+      <div class="biorow">
+        <div style="text-align:center">
+          <div class="biob" onclick="toast('🔏 تسجيل بالبصمة')">👆</div>
+          <div class="biol">البصمة</div>
+        </div>
+        <div style="text-align:center">
+          <div class="biob" onclick="toast('👁️ التعرف على الوجه')">👁️</div>
+          <div class="biol">الوجه</div>
+        </div>
+        <div style="text-align:center">
+          <div class="biob" onclick="toast('🤖 الدخول الذكي')">🤖</div>
+          <div class="biol">ذكاء AI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTER -->
+<div id="registerScreen" class="screen">
+  <div class="lbox" style="max-width:390px;width:100%;position:relative;z-index:2;margin:auto;">
+    <div class="llogo"><div class="lmark">⚡</div><div class="lname">FastFlow</div></div>
+    <div class="lcard">
+      <div class="lwel"><h2>إنشاء حساب جديد</h2><p>أنشئ حسابك لبدء الاستخدام</p></div>
+      <div class="fg"><label>الاسم الكامل</label><input class="fi" type="text" placeholder="الاسم الكامل"></div>
+      <div class="fg"><label>اسم المستخدم</label><input class="fi" type="text" placeholder="اسم المستخدم"></div>
+      <div class="fg"><label>البريد الإلكتروني</label><input class="fi" type="email" placeholder="example@company.com"></div>
+      <div class="fg"><label>رقم الجوال</label><input class="fi" type="tel" placeholder="+966 5X XXX XXXX"></div>
+      <div class="fg"><label>كلمة المرور</label><input class="fi" type="password" placeholder="كلمة مرور قوية"></div>
+      <div class="fg"><label>تأكيد كلمة المرور</label><input class="fi" type="password" placeholder="أعد كتابة كلمة المرور"></div>
+      <button class="btnl" onclick="showApp()">إنشاء الحساب</button>
+      <div class="div">لديك حساب؟</div>
+      <button class="btnr" onclick="showSc('loginScreen')">تسجيل الدخول</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appScreen" class="screen">
+  <div class="topnav">
+    <div class="tnlogo">FastFlow</div>
+    <div class="tnacts">
+      <div class="tnbtn" onclick="toast('🤖 المساعد الذكي')">🤖</div>
+      <div class="tnbtn" onclick="toast('🎤 الأوامر الصوتية')">🎤</div>
+      <div class="tnbtn">🔔<span class="nbadge">3</span></div>
+      <div class="tnbtn" onclick="nav('settingsPage','nav-set')">⚙️</div>
+    </div>
+  </div>
+
+  <div class="appcont" id="ac">
+
+    <!-- DASHBOARD -->
+    <div class="pview active" id="dashPage">
+      <div class="greet">
+        <div class="ghi">صباح الخير 👋</div>
+        <div class="gname" id="gname">المدير المالي</div>
+        <div class="gdate" id="gdate"></div>
+      </div>
+
+      <div class="aip">
+        <div class="aihd"><div class="aidot"></div><div class="aitl">المساعد المالي الذكي</div><div class="aibeta">AI</div></div>
+        <div class="aiins">📈 إيراداتك هذا الشهر أعلى بنسبة <strong style="color:var(--primary)">18.3%</strong> مقارنة بالشهر الماضي. هناك <strong style="color:var(--accent)">3 فواتير</strong> مستحقة الدفع هذا الأسبوع.</div>
+        <div class="aichips">
+          <div class="achip" onclick="nav('reportsPage','nav-rep')">📊 تقرير سريع</div>
+          <div class="achip" onclick="nav('newInvoicePage','nav-inv')">🧾 فاتورة جديدة</div>
+          <div class="achip" onclick="toast('🔮 تحليل التدفق النقدي')">💰 تحليل ذكي</div>
+        </div>
+      </div>
+
+      <div class="sh"><div class="sht">نظرة عامة</div><div class="shl">هذا الشهر ▾</div></div>
+      <div class="kgrid">
+        <div class="kcard"><span class="kico">💰</span><div class="kval">284,500</div><div class="klbl">الإيرادات (ر.س)</div><div class="ktrd up">▲ 18.3% عن السابق</div></div>
+        <div class="kcard"><span class="kico">📤</span><div class="kval">96,200</div><div class="klbl">المصروفات (ر.س)</div><div class="ktrd dn">▼ 4.1% عن السابق</div></div>
+        <div class="kcard"><span class="kico">🧾</span><div class="kval">47</div><div class="klbl">فواتير هذا الشهر</div><div class="ktrd up">▲ 12 فاتورة جديدة</div></div>
+        <div class="kcard"><span class="kico">📦</span><div class="kval">1,284</div><div class="klbl">المخزون (وحدة)</div><div class="ktrd" style="color:var(--accent)">⚠ 8 منتجات منخفضة</div></div>
+      </div>
+
+      <div class="sh"><div class="sht">إجراءات سريعة</div></div>
+      <div class="qagrid">
+        <div class="qaitem" onclick="nav('newInvoicePage','nav-inv')"><span class="qaico">🧾</span><div class="qalbl">فاتورة جديدة</div></div>
+        <div class="qaitem" onclick="nav('inventoryPage','nav-stk')"><span class="qaico">📦</span><div class="qalbl">المخزون</div></div>
+        <div class="qaitem" onclick="nav('reportsPage','nav-rep')"><span class="qaico">📊</span><div class="qalbl">التقارير</div></div>
+        <div class="qaitem" onclick="toast('👥 قائمة العملاء')"><span class="qaico">👥</span><div class="qalbl">العملاء</div></div>
+        <div class="qaitem" onclick="toast('🏦 ربط البنك')"><span class="qaico">🏦</span><div class="qalbl">البنك</div></div>
+        <div class="qaitem" onclick="toast('💸 المدفوعات')"><span class="qaico">💸</span><div class="qalbl">المدفوعات</div></div>
+        <div class="qaitem" onclick="toast('📑 العقود')"><span class="qaico">📑</span><div class="qalbl">العقود</div></div>
+        <div class="qaitem" onclick="toast('🧮 ضريبة VAT')"><span class="qaico">🧮</span><div class="qalbl">ضريبة VAT</div></div>
+      </div>
+
+      <div class="chcard">
+        <div class="sh"><div class="sht">الإيرادات والمصروفات</div><div class="shl">6 أشهر ▾</div></div>
+        <div class="chbars">
+          <div class="bwrap"><div class="bar" style="height:55%"></div><div class="blbl">ديس</div></div>
+          <div class="bwrap"><div class="bar alt" style="height:40%"></div><div class="blbl">ديس</div></div>
+          <div class="bwrap"><div class="bar" style="height:70%"></div><div class="blbl">يناير</div></div>
+          <div class="bwrap"><div class="bar alt" style="height:35%"></div><div class="blbl">يناير</div></div>
+          <div class="bwrap"><div class="bar" style="height:62%"></div><div class="blbl">فبراير</div></div>
+          <div class="bwrap"><div class="bar alt" style="height:45%"></div><div class="blbl">فبراير</div></div>
+          <div class="bwrap"><div class="bar" style="height:82%"></div><div class="blbl">مارس</div></div>
+          <div class="bwrap"><div class="bar alt" style="height:38%"></div><div class="blbl">مارس</div></div>
+          <div class="bwrap"><div class="bar" style="height:67%"></div><div class="blbl">أبريل</div></div>
+          <div class="bwrap"><div class="bar alt" style="height:42%"></div><div class="blbl">أبريل</div></div>
+          <div class="bwrap"><div class="bar" style="height:92%"></div><div class="blbl">مايو</div></div>
+          <div class="bwrap"><div class="bar alt" style="height:30%"></div><div class="blbl">مايو</div></div>
+        </div>
+        <div style="display:flex;gap:15px;margin-top:11px;">
+          <div style="display:flex;align-items:center;gap:5px;font-size:.68rem;color:var(--text-secondary)"><div style="width:11px;height:11px;border-radius:3px;background:#00c8e8"></div>الإيرادات</div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:.68rem;color:var(--text-secondary)"><div style="width:11px;height:11px;border-radius:3px;background:#0ea5e9"></div>المصروفات</div>
+        </div>
+      </div>
+
+      <div class="sh"><div class="sht">آخر المعاملات</div><div class="shl" onclick="nav('invoicesPage','nav-inv')">عرض الكل</div></div>
+      <div class="rlist">
+        <div class="ritem"><div class="rico" style="background:rgba(16,185,129,.12)">🧾</div><div class="rinfo"><div class="rtit">فاتورة مبيعات — شركة الأفق</div><div class="rsub">INV-2026-0047 · منذ ساعتين</div></div><div class="ramt pos">+12,500 ر.س</div></div>
+        <div class="ritem"><div class="rico" style="background:rgba(239,68,68,.1)">📤</div><div class="rinfo"><div class="rtit">مصروف موردين — الشركة السعودية</div><div class="rsub">EXP-2026-0031 · اليوم</div></div><div class="ramt neg">-4,200 ر.س</div></div>
+        <div class="ritem"><div class="rico" style="background:rgba(245,158,11,.1)">⏳</div><div class="rinfo"><div class="rtit">فاتورة معلقة — مجموعة الريادة</div><div class="rsub">INV-2026-0046 · مستحقة غداً</div></div><div class="ramt pen">8,750 ر.س</div></div>
+        <div class="ritem"><div class="rico" style="background:rgba(0,200,232,.1)">📦</div><div class="rinfo"><div class="rtit">تحديث المخزون — أجهزة</div><div class="rsub">STK-2026-0012 · أمس</div></div><div class="ramt pos">+240 وحدة</div></div>
+      </div>
+    </div>
+
+    <!-- INVOICES LIST -->
+    <div class="pview" id="invoicesPage">
+      <div class="sh"><div class="sht">الفواتير الإلكترونية</div>
+        <button class="btnp" style="padding:7px 13px;font-size:.76rem;border-radius:8px;" onclick="nav('newInvoicePage','nav-inv')">+ جديد</button>
+      </div>
+      <div class="ftabs">
+        <div class="ftab active">الكل (47)</div><div class="ftab">مدفوعة (31)</div>
+        <div class="ftab">معلقة (11)</div><div class="ftab">متأخرة (5)</div><div class="ftab">مسودة (8)</div>
+      </div>
+      <div class="invc"><div class="invtop"><div><div class="invnum">INV-2026-0047</div><div class="invclnt">شركة الأفق للتقنية</div></div><div class="invst stpd">مدفوعة</div></div><div class="invbot"><div class="invdt">📅 12 مايو 2026</div><div class="invamt">12,500.00 ر.س</div></div></div>
+      <div class="invc"><div class="invtop"><div><div class="invnum">INV-2026-0046</div><div class="invclnt">مجموعة الريادة التجارية</div></div><div class="invst stpe">معلقة</div></div><div class="invbot"><div class="invdt">📅 09 مايو 2026</div><div class="invamt">8,750.00 ر.س</div></div></div>
+      <div class="invc"><div class="invtop"><div><div class="invnum">INV-2026-0045</div><div class="invclnt">الشركة الذهبية المحدودة</div></div><div class="invst stov">متأخرة</div></div><div class="invbot"><div class="invdt">📅 01 مايو 2026</div><div class="invamt">23,100.00 ر.س</div></div></div>
+      <div class="invc"><div class="invtop"><div><div class="invnum">INV-2026-0044</div><div class="invclnt">شركة النخبة للاستشارات</div></div><div class="invst stpd">مدفوعة</div></div><div class="invbot"><div class="invdt">📅 28 أبريل 2026</div><div class="invamt">5,400.00 ر.س</div></div></div>
+    </div>
+
+    <!-- NEW INVOICE -->
+    <div class="pview" id="newInvoicePage">
+      <div class="sh"><div class="sht">إنشاء فاتورة إلكترونية</div></div>
+      <div class="fsec">
+        <div class="fsectit">📋 بيانات الفاتورة</div>
+        <div class="frow">
+          <div><div class="fl">نوع الفاتورة</div><select class="ff"><option>فاتورة ضريبية</option><option>فاتورة مبسطة</option><option>إشعار دائن</option><option>إشعار مدين</option></select></div>
+          <div><div class="fl">تاريخ الفاتورة</div><input class="ff" type="date" value="2026-05-08"></div>
+        </div>
+        <div class="frow">
+          <div><div class="fl">رقم الفاتورة</div><input class="ff" type="text" value="INV-2026-0048"></div>
+          <div><div class="fl">تاريخ الاستحقاق</div><input class="ff" type="date" value="2026-05-22"></div>
+        </div>
+      </div>
+      <div class="fsec">
+        <div class="fsectit">👤 بيانات العميل</div>
+        <div class="frow full"><div class="fl">اسم العميل</div><input class="ff" type="text" placeholder="اختر أو أدخل اسم العميل"></div>
+        <div class="frow">
+          <div><div class="fl">الرقم الضريبي (VAT)</div><input class="ff" type="text" placeholder="300XXXXXXXXX"></div>
+          <div><div class="fl">رقم السجل التجاري</div><input class="ff" type="text" placeholder="1XXXXXXXXX"></div>
+        </div>
+        <div class="frow full"><div class="fl">العنوان</div><input class="ff" type="text" placeholder="المدينة، الحي، الشارع"></div>
+      </div>
+      <div class="fsec">
+        <div class="fsectit">📦 بنود الفاتورة</div>
+        <table class="ittbl">
+          <thead><tr><th>الصنف</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th></tr></thead>
+          <tbody id="itmbd">
+            <tr><td>خدمة استشارية</td><td>2</td><td>2,500</td><td style="color:var(--primary);font-family:var(--fen);font-weight:700">5,000</td></tr>
+            <tr><td>ترخيص برمجي</td><td>1</td><td>3,000</td><td style="color:var(--primary);font-family:var(--fen);font-weight:700">3,000</td></tr>
+          </tbody>
+        </table>
+        <button class="additem" onclick="addItm()">+ إضافة بند جديد</button>
+        <div class="totbox">
+          <div class="trow"><span>المجموع قبل الضريبة</span><span class="tamt">8,000.00 ر.س</span></div>
+          <div class="trow"><span>ضريبة القيمة المضافة (15%)</span><span class="tamt">1,200.00 ر.س</span></div>
+          <div class="trow"><span>الخصم</span><span class="tamt">0.00 ر.س</span></div>
+          <div class="trow tfin"><span>الإجمالي النهائي</span><span class="tamt" style="font-size:1.05rem">9,200.00 ر.س</span></div>
+        </div>
+        <div class="zatca">
+          <div class="zatico">🔐</div>
+          <div><div class="zt">معتمدة من هيئة الزكاة والضريبة والجمارك (ZATCA)</div><div class="zs">الفاتورة تستوفي متطلبات الفوترة الإلكترونية المرحلة الثانية</div></div>
+        </div>
+      </div>
+      <div class="actrow">
+        <button class="btnp" onclick="toast('✅ تم إرسال الفاتورة بنجاح')">📤 إصدار وإرسال</button>
+        <button class="btns" onclick="toast('💾 تم حفظ المسودة')">💾 حفظ</button>
+      </div>
+    </div>
+
+    <!-- REPORTS -->
+    <div class="pview" id="reportsPage">
+      <div class="sh"><div class="sht">التقارير المالية</div><div class="shl">⬇ تصدير</div></div>
+      <div class="rtabs">
+        <div class="rtab active">يومي</div><div class="rtab">أسبوعي</div><div class="rtab">شهري</div>
+        <div class="rtab">ربع سنوي</div><div class="rtab">نصف سنوي</div><div class="rtab">سنوي</div>
+      </div>
+      <div class="rsgrid">
+        <div class="rsstat"><div class="rssv" style="color:var(--green)">284K</div><div class="rssl">إيرادات</div></div>
+        <div class="rsstat"><div class="rssv" style="color:var(--red)">96K</div><div class="rssl">مصروفات</div></div>
+        <div class="rsstat"><div class="rssv" style="color:var(--primary)">188K</div><div class="rssl">صافي الربح</div></div>
+      </div>
+      <div class="rpcrd">
+        <div class="rptl">📈 مخطط الإيرادات الشهرية</div>
+        <svg viewBox="0 0 300 80" style="width:100%;height:100px;" preserveAspectRatio="none">
+          <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00c8e8" stop-opacity=".3"/><stop offset="100%" stop-color="#00c8e8" stop-opacity="0"/></linearGradient></defs>
+          <path d="M0,60 L50,45 L100,30 L150,35 L200,15 L250,20 L300,8" fill="none" stroke="#00c8e8" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M0,60 L50,45 L100,30 L150,35 L200,15 L250,20 L300,8 L300,80 L0,80Z" fill="url(#lg)"/>
+          <circle cx="200" cy="15" r="4" fill="#00c8e8"/><circle cx="300" cy="8" r="4" fill="#00c8e8"/>
+        </svg>
+      </div>
+      <div class="sh"><div class="sht">تقرير حسب الفئة</div></div>
+      <div class="rtblcard">
+        <div class="rthdr"><span>الفئة</span><span>المبيعات</span><span>النمو</span></div>
+        <div class="rtrow"><span>🖥 التقنية</span><span style="font-family:var(--fen);font-weight:700">98,500</span><span class="up">▲ 22%</span></div>
+        <div class="rtrow"><span>🏗 الإنشاء</span><span style="font-family:var(--fen);font-weight:700">74,200</span><span class="up">▲ 15%</span></div>
+        <div class="rtrow"><span>📋 الاستشارات</span><span style="font-family:var(--fen);font-weight:700">56,800</span><span class="dn">▼ 3%</span></div>
+        <div class="rtrow"><span>📦 التجزئة</span><span style="font-family:var(--fen);font-weight:700">31,000</span><span class="up">▲ 8%</span></div>
+        <div class="rtrow"><span>🚚 اللوجستيات</span><span style="font-family:var(--fen);font-weight:700">24,000</span><span class="up">▲ 11%</span></div>
+      </div>
+      <div class="actrow">
+        <button class="btnp" onclick="toast('📄 جاري تصدير PDF')">📄 تصدير PDF</button>
+        <button class="btns" onclick="toast('📊 تصدير Excel')">📊 Excel</button>
+      </div>
+    </div>
+
+    <!-- INVENTORY -->
+    <div class="pview" id="inventoryPage">
+      <div class="sh"><div class="sht">إدارة المخزون</div>
+        <button class="btnp" style="padding:7px 13px;font-size:.76rem;border-radius:8px;" onclick="toast('➕ إضافة منتج جديد')">+ منتج</button>
+      </div>
+      <div class="invsrch"><span>🔍</span><input type="text" placeholder="البحث في المنتجات..."><span style="cursor:pointer;color:var(--primary)" onclick="toast('⚡ تصفية متقدمة')">⚡</span></div>
+      <div class="ftabs">
+        <div class="ftab active">الكل</div><div class="ftab">إلكترونيات</div><div class="ftab">أثاث</div><div class="ftab">مستهلكات</div>
+      </div>
+      <div class="prodcard"><div class="prodimg">💻</div><div class="prodinf"><div class="prodnm">لابتوب Dell XPS 15</div><div class="prodct">إلكترونيات · SKU: EL-001</div></div><div class="prodstk"><div class="stkn sok">47</div><div class="stkl">وحدة</div></div></div>
+      <div class="prodcard"><div class="prodimg">📱</div><div class="prodinf"><div class="prodnm">iPhone 16 Pro Max</div><div class="prodct">إلكترونيات · SKU: EL-002</div></div><div class="prodstk"><div class="stkn slow">8</div><div class="stkl">وحدة ⚠</div></div></div>
+      <div class="prodcard"><div class="prodimg">🖨️</div><div class="prodinf"><div class="prodnm">طابعة HP LaserJet</div><div class="prodct">مستهلكات · SKU: PR-003</div></div><div class="prodstk"><div class="stkn sout">0</div><div class="stkl">نفذ ❌</div></div></div>
+      <div class="prodcard"><div class="prodimg">🪑</div><div class="prodinf"><div class="prodnm">كرسي مكتب Ergonomic</div><div class="prodct">أثاث · SKU: FN-004</div></div><div class="prodstk"><div class="stkn sok">124</div><div class="stkl">وحدة</div></div></div>
+      <div class="prodcard"><div class="prodimg">🖥️</div><div class="prodinf"><div class="prodnm">شاشة Samsung 4K 32"</div><div class="prodct">إلكترونيات · SKU: EL-005</div></div><div class="prodstk"><div class="stkn slow">12</div><div class="stkl">وحدة ⚠</div></div></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="pview" id="settingsPage">
+      <div class="sh"><div class="sht">الإعدادات</div></div>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:19px;display:flex;align-items:center;gap:15px;">
+        <div style="width:54px;height:54px;background:linear-gradient(135deg,#00c8e8,#0ea5e9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.45rem;font-weight:900;flex-shrink:0;color:#fff">A</div>
+        <div><div style="font-size:.97rem;font-weight:700" id="sname">المدير المالي</div><div style="font-size:.72rem;color:var(--text-secondary)">admin@fastflow.sa</div><div style="font-size:.68rem;color:var(--primary);margin-top:3px">الباقة الاحترافية ✓</div></div>
+      </div>
+      <div class="stsec">
+        <div class="ststl">الشركة</div>
+        <div class="stitem" onclick="toast('🏢 إعدادات الشركة')"><div class="siico">🏢</div><div class="siinf"><div class="sitl">بيانات الشركة</div><div class="sisb">الاسم، السجل التجاري، الرقم الضريبي</div></div><div class="siarr">›</div></div>
+        <div class="stitem" onclick="toast('📄 قالب الفاتورة')"><div class="siico">📄</div><div class="siinf"><div class="sitl">قالب الفاتورة</div><div class="sisb">تخصيص الشعار والألوان</div></div><div class="siarr">›</div></div>
+        <div class="stitem" onclick="toast('🔐 ZATCA معتمد')"><div class="siico">🔐</div><div class="siinf"><div class="sitl">تكامل ZATCA</div><div class="sisb">الفوترة الإلكترونية المرحلة الثانية</div></div><div class="siarr" style="color:var(--green)">✓</div></div>
+      </div>
+      <div class="stsec">
+        <div class="ststl">التفضيلات</div>
+        <div class="stitem"><div class="siico">🌙</div><div class="siinf"><div class="sitl">الوضع الليلي</div><div class="sisb">مفعّل حالياً</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="stitem"><div class="siico">🤖</div><div class="siinf"><div class="sitl">المساعد الذكي AI</div><div class="sisb">التحليلات التلقائية</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="stitem"><div class="siico">🎤</div><div class="siinf"><div class="sitl">الأوامر الصوتية</div><div class="sisb">Voice Over مدعوم</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="stitem"><div class="siico">🔔</div><div class="siinf"><div class="sitl">الإشعارات</div><div class="sisb">تنبيهات الفواتير والمدفوعات</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+      </div>
+      <div class="stsec">
+        <div class="ststl">اللغات</div>
+        <div class="stitem" onclick="toast('🌐 اللغة: العربية')"><div class="siico">🌐</div><div class="siinf"><div class="sitl">اللغة</div><div class="sisb">العربية | English | Français | Deutsch | 中文 | Español</div></div><div class="siarr">›</div></div>
+      </div>
+      <div class="stsec">
+        <div class="ststl">الأمان</div>
+        <div class="stitem" onclick="toast('🔒 تغيير كلمة المرور')"><div class="siico">🔒</div><div class="siinf"><div class="sitl">كلمة المرور</div><div class="sisb">آخر تغيير منذ 30 يوم</div></div><div class="siarr">›</div></div>
+        <div class="stitem"><div class="siico">👆</div><div class="siinf"><div class="sitl">بصمة الإصبع</div><div class="sisb">تسجيل الدخول البيومتري</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+      </div>
+      <button onclick="logout()" style="width:100%;padding:13px;background:rgba(239,68,68,.1);border:1.5px solid rgba(239,68,68,.25);border-radius:var(--rs);color:var(--red);font-size:.88rem;font-weight:700;font-family:var(--far);cursor:pointer;margin-bottom:16px;transition:var(--tr)">
+        🚪 تسجيل الخروج
+      </button>
+    </div>
+
+  </div><!-- end appcont -->
+
+  <button class="vbtn" onclick="toast('🎤 استمع... قل: فاتورة جديدة أو عرض التقارير')">🎤</button>
+
+  <div class="bnav">
+    <div class="bni active" id="nav-dsh" onclick="nav('dashPage','nav-dsh')"><div class="bnico">🏠</div><div class="bnlbl">الرئيسية</div></div>
+    <div class="bni" id="nav-inv" onclick="nav('invoicesPage','nav-inv')"><div class="bnico">🧾</div><div class="bnlbl">الفواتير</div></div>
+    <div class="bni" id="nav-rep" onclick="nav('reportsPage','nav-rep')"><div class="bnico">📊</div><div class="bnlbl">التقارير</div></div>
+    <div class="bni" id="nav-stk" onclick="nav('inventoryPage','nav-stk')"><div class="bnico">📦</div><div class="bnlbl">المخزون</div></div>
+    <div class="bni" id="nav-set" onclick="nav('settingsPage','nav-set')"><div class="bnico">⚙️</div><div class="bnlbl">الإعدادات</div></div>
+  </div>
+</div>
+
+<div class="toast" id="toastEl">✅ تم</div>
+
+<script>
+// Particles
+(()=>{
+  const c=document.getElementById('ptcls');
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style=`left:${Math.random()*100}%;--d:${6+Math.random()*8}s;--dl:-${Math.random()*6}s;`;
+    c.appendChild(p);
+  }
+})();
+
+// Date
+document.getElementById('gdate').textContent=new Date().toLocaleDateString('ar-SA',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+// Show screen
+function showSc(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// Login
+function doLogin(){
+  const u=document.getElementById('uinp').value.trim();
+  const p=document.getElementById('pinp').value.trim();
+  if(!u||!p){toast('⚠️ يرجى إدخال اسم المستخدم وكلمة المرور');return;}
+  document.getElementById('gname').textContent=u;
+  document.getElementById('sname').textContent=u;
+  showApp();
+}
+function showApp(){showSc('appScreen');nav('dashPage','nav-dsh');}
+function logout(){document.getElementById('uinp').value='';document.getElementById('pinp').value='';showSc('loginScreen');}
+
+// Navigate pages
+function nav(pgId,navId){
+  document.querySelectorAll('.pview').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.bni').forEach(n=>n.classList.remove('active'));
+  const pg=document.getElementById(pgId);if(pg)pg.classList.add('active');
+  const nb=document.getElementById(navId);if(nb)nb.classList.add('active');
+  const ac=document.getElementById('ac');if(ac)ac.scrollTop=0;
+}
+
+// Filter tabs
+document.querySelectorAll('.ftabs,.rtabs').forEach(g=>{
+  g.querySelectorAll('.ftab,.rtab').forEach(t=>{
+    t.onclick=()=>{g.querySelectorAll('.ftab,.rtab').forEach(x=>x.classList.remove('active'));t.classList.add('active');};
+  });
+});
+
+// Add item
+function addItm(){
+  const tb=document.getElementById('itmbd');
+  const tr=document.createElement('tr');
+  tr.innerHTML='<td><input style="background:transparent;border:none;outline:none;color:var(--text-primary);font-family:var(--far);width:100%;font-size:.78rem" placeholder="اسم البند"/></td><td>1</td><td>0</td><td style="color:var(--primary);font-family:var(--fen);font-weight:700">0</td>';
+  tb.appendChild(tr);toast('✅ تمت إضافة بند جديد');
+}
+
+// Lang
+function setLang(el,l){
+  document.querySelectorAll('.lp').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  toast(l==='ar'?'🇸🇦 تم التبديل للعربية':'🌐 Switched to English');
+}
+
+// Toast
+let tt;
+function toast(msg){
+  const t=document.getElementById('toastEl');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// =============================================
+// PWA — Manifest + Icons (generated inline)
+// =============================================
+(function setupPWA(){
+
+  // 1. Generate App Icon via Canvas (sky blue ⚡)
+  function makeIcon(size){
+    const c=document.createElement('canvas');
+    c.width=c.height=size;
+    const ctx=c.getContext('2d');
+    const r=size*0.22;
+    // Background rounded rect
+    ctx.beginPath();
+    ctx.moveTo(r,0);ctx.lineTo(size-r,0);
+    ctx.quadraticCurveTo(size,0,size,r);
+    ctx.lineTo(size,size-r);
+    ctx.quadraticCurveTo(size,size,size-r,size);
+    ctx.lineTo(r,size);
+    ctx.quadraticCurveTo(0,size,0,size-r);
+    ctx.lineTo(0,r);
+    ctx.quadraticCurveTo(0,0,r,0);
+    ctx.closePath();
+    const grad=ctx.createLinearGradient(0,0,size,size);
+    grad.addColorStop(0,'#00c8e8');grad.addColorStop(1,'#0099bb');
+    ctx.fillStyle=grad;ctx.fill();
+    // Inner glow
+    const glow=ctx.createRadialGradient(size*.35,size*.3,0,size*.5,size*.5,size*.6);
+    glow.addColorStop(0,'rgba(255,255,255,0.18)');glow.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=glow;ctx.fill();
+    // Lightning bolt ⚡
+    ctx.fillStyle='#ffffff';
+    ctx.shadowColor='rgba(255,255,255,0.5)';
+    ctx.shadowBlur=size*0.05;
+    ctx.font=`bold ${size*0.52}px Arial`;
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('⚡',size/2,size/2+size*0.03);
+    return c.toDataURL('image/png');
+  }
+
+  const icon192=makeIcon(192);
+  const icon512=makeIcon(512);
+
+  // Set favicon & apple icon
+  document.getElementById('favicon').href=icon192;
+  document.getElementById('appleIcon').href=icon192;
+
+  // 2. Create Manifest JSON blob
+  const manifest={
+    name:'FastFlow — نظام محاسبي متكامل',
+    short_name:'FastFlow',
+    description:'نظام محاسبي متكامل للمملكة العربية السعودية - فواتير إلكترونية ZATCA',
+    start_url:'.',
+    display:'standalone',
+    background_color:'#04101e',
+    theme_color:'#00c8e8',
+    orientation:'portrait-primary',
+    lang:'ar',
+    dir:'rtl',
+    categories:['finance','business','productivity'],
+    icons:[
+      {src:icon192,sizes:'192x192',type:'image/png',purpose:'any maskable'},
+      {src:icon512,sizes:'512x512',type:'image/png',purpose:'any maskable'}
+    ],
+    screenshots:[],
+    shortcuts:[
+      {name:'فاتورة جديدة',short_name:'فاتورة',description:'إنشاء فاتورة إلكترونية جديدة',url:'.'},
+      {name:'التقارير',short_name:'تقارير',description:'عرض التقارير المالية',url:'.'}
+    ]
+  };
+  const mBlob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
+  const mUrl=URL.createObjectURL(mBlob);
+  document.getElementById('manifestLink').href=mUrl;
+
+  // 3. Register Service Worker (inline via Blob)
+  const swCode=`
+const CACHE='fastflow-v1';
+const ASSETS=['/'];
+self.addEventListener('install',e=>{
+  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));
+});
+self.addEventListener('activate',e=>{
+  e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));
+});
+self.addEventListener('fetch',e=>{
+  e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>new Response('<h1 style="font-family:sans-serif;text-align:center;padding:40px;color:#00c8e8">FastFlow يعمل بدون إنترنت ✓</h1>',{headers:{'Content-Type':'text/html'}}))));
+});
+`;
+  if('serviceWorker' in navigator){
+    const swBlob=new Blob([swCode],{type:'application/javascript'});
+    const swUrl=URL.createObjectURL(swBlob);
+    navigator.serviceWorker.register(swUrl).then(()=>{
+      console.log('FastFlow SW registered');
+    }).catch(()=>{});
+  }
+
+  // 4. Online/Offline indicator
+  const offBanner=document.createElement('div');
+  offBanner.id='offbanner';
+  offBanner.style.cssText='position:fixed;top:0;left:0;right:0;padding:10px;text-align:center;font-size:.78rem;font-weight:700;font-family:Cairo,sans-serif;z-index:9999;transition:all .3s;transform:translateY(-100%);';
+  document.body.appendChild(offBanner);
+
+  function updateOnline(){
+    if(!navigator.onLine){
+      offBanner.style.cssText+=';background:rgba(245,158,11,.95);color:#fff;transform:translateY(0);';
+      offBanner.textContent='⚠️ لا يوجد اتصال بالإنترنت — يعمل FastFlow أوفلاين';
+    } else {
+      offBanner.style.transform='translateY(-100%)';
+    }
+  }
+  window.addEventListener('online',updateOnline);
+  window.addEventListener('offline',updateOnline);
+  updateOnline();
+
+})();
+
+// =============================================
+// PWA Install Prompt (Android Chrome)
+// =============================================
+(function setupInstallPrompt(){
+  let deferredPrompt=null;
+
+  // Build install banner UI
+  const banner=document.createElement('div');
+  banner.id='installBanner';
+  banner.innerHTML=`
+    <div style="display:flex;align-items:center;gap:14px;flex:1;">
+      <div style="width:46px;height:46px;background:linear-gradient(135deg,#00c8e8,#0099bb);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">⚡</div>
+      <div>
+        <div style="font-size:.88rem;font-weight:700;color:#e8f4ff;">تثبيت FastFlow</div>
+        <div style="font-size:.7rem;color:#7cb8d8;margin-top:2px;">ثبّت التطبيق على شاشتك الرئيسية</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-shrink:0;">
+      <button id="installBtn" style="padding:9px 18px;background:linear-gradient(135deg,#00c8e8,#0099bb);border:none;border-radius:8px;color:#fff;font-size:.8rem;font-weight:700;font-family:Cairo,sans-serif;cursor:pointer;">تثبيت</button>
+      <button id="dismissBtn" style="padding:9px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#7cb8d8;font-size:.8rem;cursor:pointer;">لاحقاً</button>
+    </div>
+  `;
+  banner.style.cssText=`
+    position:fixed;bottom:0;left:0;right:0;
+    background:rgba(7,21,38,.97);
+    border-top:1px solid rgba(0,200,232,.25);
+    padding:16px 18px;
+    display:flex;align-items:center;gap:14px;
+    z-index:1000;
+    transform:translateY(100%);
+    transition:transform .4s cubic-bezier(.4,0,.2,1);
+    backdrop-filter:blur(16px);
+    box-shadow:0 -8px 32px rgba(0,0,0,.4);
+  `;
+  document.body.appendChild(banner);
+
+  window.addEventListener('beforeinstallprompt',e=>{
+    e.preventDefault();
+    deferredPrompt=e;
+    setTimeout(()=>{banner.style.transform='translateY(0)';},2000);
+  });
+
+  document.getElementById('installBtn').addEventListener('click',async()=>{
+    banner.style.transform='translateY(100%)';
+    if(deferredPrompt){
+      deferredPrompt.prompt();
+      const {outcome}=await deferredPrompt.userChoice;
+      if(outcome==='accepted'){
+        setTimeout(()=>toast('🎉 تم تثبيت FastFlow بنجاح!'),500);
+      }
+      deferredPrompt=null;
+    }
+  });
+
+  document.getElementById('dismissBtn').addEventListener('click',()=>{
+    banner.style.transform='translateY(100%)';
+  });
+
+  // App installed
+  window.addEventListener('appinstalled',()=>{
+    banner.style.transform='translateY(100%)';
+    toast('🎉 تم تثبيت FastFlow بنجاح!');
+  });
+
+  // iOS manual instructions
+  const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isSafari=/^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const installed=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
+
+  if(isIOS && isSafari && !installed){
+    setTimeout(()=>{
+      const iosBanner=document.createElement('div');
+      iosBanner.innerHTML=`
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+          <div style="font-size:.9rem;font-weight:700;color:#e8f4ff;">📲 تثبيت FastFlow على آيفون</div>
+          <button onclick="this.parentElement.parentElement.parentElement.remove()" style="background:none;border:none;color:#7cb8d8;font-size:1.1rem;cursor:pointer;padding:0;">✕</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#7cb8d8;">
+            <div style="width:28px;height:28px;background:rgba(0,200,232,.12);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;">1</div>
+            <span>اضغط على زر <strong style="color:#00c8e8">المشاركة</strong> ⬆️ في شريط Safari</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#7cb8d8;">
+            <div style="width:28px;height:28px;background:rgba(0,200,232,.12);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;">2</div>
+            <span>اختر <strong style="color:#00c8e8">إضافة إلى الشاشة الرئيسية</strong> 📱</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:.78rem;color:#7cb8d8;">
+            <div style="width:28px;height:28px;background:rgba(0,200,232,.12);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;">3</div>
+            <span>اضغط <strong style="color:#00c8e8">إضافة</strong> ✓</span>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:10px;background:rgba(0,200,232,.07);border-radius:8px;font-size:.72rem;color:#7cb8d8;text-align:center;">
+          🏠 سيظهر FastFlow على شاشتك الرئيسية مثل أي تطبيق
+        </div>
+      `;
+      iosBanner.style.cssText=`
+        position:fixed;bottom:0;left:0;right:0;
+        background:rgba(7,21,38,.97);
+        border-top:1px solid rgba(0,200,232,.25);
+        padding:20px 18px;
+        z-index:1000;
+        backdrop-filter:blur(16px);
+        box-shadow:0 -8px 32px rgba(0,0,0,.4);
+        border-radius:20px 20px 0 0;
+        animation:slideUp .4s cubic-bezier(.4,0,.2,1);
+      `;
+      document.body.appendChild(iosBanner);
+    },2500);
+  }
+})();
+</script>
+</body>
+</html>
