@@ -21,7 +21,38 @@
 </div><div id="sectorScr" class="scr"><div class="sec-wrap"><div class="sec-hd"><h2 id="sec-hd-t">اختر قطاع نشاطك التجاري</h2><p id="sec-hd-s">سيتم تخصيص البرنامج بالكامل لنشاطك</p></div><div class="glass" style="padding:18px"><div class="sec-grid" id="secGrid"></div><button class="btn-main" id="secBtn" onclick="goLogin()" style="margin-top:14px">متابعة ←</button><button class="btn-o" onclick="goScr('langScr')" id="secBack">← رجوع</button></div></div>
 </div><div id="loginScr" class="scr"><div class="login-wrap"><div class="login-brand"><div class="login-bname">FastFlow</div></div><div class="glass" style="padding:22px 18px"><div class="sec-badge"><div class="sb-ico" id="sb-ico">🏢</div><div class="sb-name" id="sb-name">شركات وأعمال</div><div class="sb-chg" onclick="goScr('sectorScr')">تغيير</div></div><div class="av" id="login-av">F</div><div class="lwel"><h2 id="lw-h">مرحباً بك 👋</h2><p id="lw-p">سجّل دخولك للمتابعة</p></div><div class="dr"><div class="dr-btn" onclick="toggleDr('dr1')" id="dr1-btn"><span id="dr1-flag">🇸🇦</span><span id="dr1-lang" style="flex:1">العربية</span><span>▾</span></div><div class="dr-menu" id="dr1"></div></div><div class="fg"><label id="lbl-u">اسم المستخدم</label><span class="fi-ico">👤</span><input class="fi" id="uinp" type="text" autocomplete="username"></div><div class="fg"><label id="lbl-p">كلمة المرور</label><span class="fi-ico">🔒</span><input class="fi" id="pinp" type="password" autocomplete="current-password"></div><button class="btn-main" id="lbtn" onclick="doLogin()">تسجيل الدخول</button><div class="divr" id="ldivr">أو</div><button class="btn-o" id="rbtn" onclick="goScr('regScr')">إنشاء حساب جديد</button><div class="bio-row"><div style="text-align:center"><div class="bio-b" onclick="toast('🔏 بصمة الإصبع')">👆</div><div class="bio-lbl">البصمة</div></div><div style="text-align:center"><div class="bio-b" onclick="toast('👁️ التعرف على الوجه')">👁️</div><div class="bio-lbl">الوجه</div></div><div style="text-align:center"><div class="bio-b" onclick="toast('🤖 الدخول الذكي')">🤖</div><div class="bio-lbl">AI</div></div></div></div></div>
 </div><div id="regScr" class="scr" style="align-items:center;justify-content:center;padding:16px;overflow-y:auto"><div style="width:100%;max-width:385px;z-index:20;animation:fadeUp .6s ease both"><div style="text-align:center;margin-bottom:14px"><div class="login-bname">FastFlow</div></div><div class="glass" style="padding:22px 18px"><div style="text-align:center;margin-bottom:16px"><div style="font-size:1rem;font-weight:700" id="reg-t">إنشاء حساب جديد</div></div><div class="fg"><label id="reg-l1">الاسم الكامل</label><input class="fi" type="text" id="rn-inp" placeholder="—"></div><div class="fg"><label id="reg-l2">اسم المستخدم</label><input class="fi" type="text" id="ru-inp" placeholder="—"></div><div class="fg"><label id="reg-l3">البريد الإلكتروني</label><input class="fi" type="email" placeholder="example@company.com"></div><div class="fg"><label id="reg-l4">رقم الجوال</label><input class="fi" type="tel" placeholder="+966 5X XXX XXXX"></div><div class="fg"><label id="reg-l5">كلمة المرور</label><input class="fi" type="password" placeholder="—"></div><div class="fg"><label id="reg-l6">تأكيد كلمة المرور</label><input class="fi" type="password" placeholder="—"></div><button class="btn-main" onclick="doLogin()" id="reg-btn">إنشاء الحساب</button><div class="divr" id="reg-or">لديك حساب؟</div><button class="btn-o" onclick="goScr('loginScr')" id="reg-back">تسجيل الدخول</button></div></div>
-</div><div id="appScr" class="scr"><div class="tnav"><div class="tn-l"><div class="tn-logo">FastFlow</div><div class="tn-sec" id="tn-sec">🏢 شركات وأعمال</div></div><div class="tn-acts"><div class="tn-btn" onclick="toast('🤖 المساعد الذكي')">🤖</div><div class="tn-btn" onclick="toast('🎤 أوامر صوتية')">🎤</div><div class="tn-btn">🔔<span class="nbdg">3</span></div><div class="tn-btn" onclick="navTo('setPage','bn-set')">⚙️</div></div></div><div class="acont" id="acont"><div class="pv on" id="dashPage"><div class="greet"><div class="greet-av" id="greet-av">A</div><div class="greet-info"><div class="greet-hi" id="greet-hi">صباح الخير 👋</div><div class="greet-name" id="greet-name">المدير المالي</div><div class="greet-date" id="greet-date"></div></div><div class="greet-badge"><span>🇸🇦 ZATCA</span><span style="margin-top:4px">🟢 متصل</span></div></div><div class="sh"><div class="sh-t" id="sh-ov">نظرة عامة</div><div class="sh-l">هذا الشهر ▾</div></div><div class="kgrid"><div class="kcard"><span class="k-ico">💰</span><div class="k-val">284,500</div><div class="k-lbl" id="k1">الإيرادات (ر.س)</div><div class="k-tr up">▲ 18.3%</div></div><div class="kcard"><span class="k-ico">📤</span><div class="k-val">96,200</div><div class="k-lbl" id="k2">المصروفات (ر.س)</div><div class="k-tr dn">▼ 4.1%</div></div><div class="kcard"><span class="k-ico">🧾</span><div class="k-val">47</div><div class="k-lbl" id="k3">فواتير هذا الشهر</div><div class="k-tr up">▲ 12 جديدة</div></div><div class="kcard"><span class="k-ico">📦</span><div class="k-val">1,284</div><div class="k-lbl" id="k4">المخزون (وحدة)</div><div class="k-tr" style="color:var(--o)">⚠ 8 منخفضة</div></div></div><div class="ai-box"><div class="ai-hd"><div class="ai-dot"></div><div class="ai-title" id="ai-tl">المساعد المالي الذكي</div><div class="ai-badge">AI</div></div><div class="ai-txt" id="ai-txt">📈 إيراداتك أعلى بنسبة <strong style="color:var(--p)">18.3%</strong> هذا الشهر. هناك <strong style="color:var(--o)">3 فواتير</strong> مستحقة هذا الأسبوع.</div><div class="ai-chips" id="ai-chips"><div class="chip" onclick="navTo('repPage','bn-rep')">📊 تقرير سريع</div><div class="chip" onclick="navTo('newInvPage','bn-inv')">🧾 فاتورة جديدة</div><div class="chip" onclick="toast('💰 تحليل التدفق النقدي')">💰 تحليل ذكي</div></div></div><div class="sh"><div class="sh-t" id="sh-qa">إجراءات سريعة</div></div><div class="qa-row" id="qaRow"></div><div class="chart-card"><div class="sh"><div class="sh-t" id="sh-ch">الإيرادات والمصروفات</div><div class="sh-l">6 أشهر</div></div><div class="bars"><div class="bw"><div class="bar" style="height:55%"></div><div class="bl">ديس</div></div><div class="bw"><div class="bar alt" style="height:37%"></div><div class="bl">ديس</div></div><div class="bw"><div class="bar" style="height:68%"></div><div class="bl">يناير</div></div><div class="bw"><div class="bar alt" style="height:32%"></div><div class="bl">يناير</div></div><div class="bw"><div class="bar" style="height:74%"></div><div class="bl">فبراير</div></div><div class="bw"><div class="bar alt" style="height:41%"></div><div class="bl">فبراير</div></div><div class="bw"><div class="bar" style="height:82%"></div><div class="bl">مارس</div></div><div class="bw"><div class="bar alt" style="height:35%"></div><div class="bl">مارس</div></div><div class="bw"><div class="bar" style="height:66%"></div><div class="bl">أبريل</div></div><div class="bw"><div class="bar alt" style="height:39%"></div><div class="bl">أبريل</div></div><div class="bw"><div class="bar" style="height:92%"></div><div class="bl">مايو</div></div><div class="bw"><div class="bar alt" style="height:27%"></div><div class="bl">مايو</div></div></div><div class="chart-legend"><div class="leg"><div class="leg-dot" style="background:#00d4f0"></div><span id="leg1">الإيرادات</span></div><div class="leg"><div class="leg-dot" style="background:#c084fc"></div><span id="leg2">المصروفات</span></div></div></div><div class="sh"><div class="sh-t" id="sh-mod">وحدات القطاع</div></div><div class="mod-grid" id="modGrid"></div><div class="sh"><div class="sh-t" id="sh-rec">آخر المعاملات</div><div class="sh-l" onclick="navTo('invPage','bn-inv')">عرض الكل</div></div><div class="r-list" id="recList"></div></div><div class="pv" id="invPage"><div class="sh"><div class="sh-t" id="inv-tl">الفواتير الإلكترونية</div><button class="btn-p2" style="padding:7px 13px;font-size:.73rem;border-radius:8px;flex:none" onclick="navTo('newInvPage','bn-inv')">+ جديد</button></div><div class="ftabs"><div class="ftab on" onclick="tabClick(this)">الكل (47)</div><div class="ftab" onclick="tabClick(this)">مدفوعة (31)</div><div class="ftab" onclick="tabClick(this)">معلقة (11)</div><div class="ftab" onclick="tabClick(this)">متأخرة (5)</div><div class="ftab" onclick="tabClick(this)">مسودة (8)</div></div><div id="invList"></div></div><div class="pv" id="newInvPage"><div class="sh"><div class="sh-t" id="ni-tl">إنشاء فاتورة إلكترونية</div></div><div class="fsec"><div class="fst">📋 بيانات الفاتورة</div><div class="frow"><div><div class="fl">نوع الفاتورة</div><select class="ff"><option>فاتورة ضريبية</option><option>فاتورة مبسطة</option><option>إشعار دائن</option><option>إشعار مدين</option></select></div><div><div class="fl">تاريخ الفاتورة</div><input class="ff" type="date"></div></div><div class="frow"><div><div class="fl">رقم الفاتورة</div><input class="ff" value="INV-2026-0048"></div><div><div class="fl">تاريخ الاستحقاق</div><input class="ff" type="date"></div></div></div><div class="fsec"><div class="fst">👤 بيانات العميل</div><div class="frow full"><div class="fl">اسم العميل</div><input class="ff" placeholder="اختر أو أدخل اسم العميل"></div><div class="frow"><div><div class="fl">الرقم الضريبي</div><input class="ff" placeholder="300XXXXXXXXX"></div><div><div class="fl">السجل التجاري</div><input class="ff" placeholder="1XXXXXXXXX"></div></div><div class="frow full"><div class="fl">العنوان</div><input class="ff" placeholder="المدينة، الحي، الشارع"></div></div><div class="fsec"><div class="fst">📦 بنود الفاتورة</div><table class="ittbl"><thead><tr><th>الصنف</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th></tr></thead><tbody id="itmTbl"><tr><td>خدمة استشارية</td><td>2</td><td>2,500</td><td style="color:var(--p);font-weight:700;font-family:'Poppins',sans-serif">5,000</td></tr><tr><td>ترخيص برمجي</td><td>1</td><td>3,000</td><td style="color:var(--p);font-weight:700;font-family:'Poppins',sans-serif">3,000</td></tr></tbody></table><button class="add-row" onclick="addItem()">+ إضافة بند</button><div class="totbox"><div class="trow"><span>المجموع قبل الضريبة</span><span class="tamt">8,000.00 ر.س</span></div><div class="trow"><span>ضريبة القيمة المضافة (15%)</span><span class="tamt">1,200.00 ر.س</span></div><div class="trow"><span>الخصم</span><span class="tamt">0.00 ر.س</span></div><div class="trow tfin"><span>الإجمالي النهائي</span><span class="tamt" style="font-size:.92rem">9,200.00 ر.س</span></div></div><div class="zatca-box"><div style="font-size:1.3rem">🔐</div><div><div class="zt">معتمدة من ZATCA — المرحلة الثانية</div><div class="zs">تستوفي متطلبات الفوترة الإلكترونية بالكامل</div></div></div></div><div class="act-row"><button class="btn-p2" onclick="toast('✅ تم إرسال الفاتورة بنجاح')">📤 إصدار وإرسال</button><button class="btn-s2" onclick="toast('💾 تم حفظ المسودة')">💾 حفظ</button></div></div><div class="pv" id="repPage"><div class="sh"><div class="sh-t" id="rep-tl">التقارير المالية</div><div class="sh-l" onclick="toast('📄 جاري التصدير')">⬇ تصدير</div></div><div class="ftabs"><div class="ftab on" onclick="tabClick(this)">يومي</div><div class="ftab" onclick="tabClick(this)">أسبوعي</div><div class="ftab" onclick="tabClick(this)">شهري</div><div class="ftab" onclick="tabClick(this)">ربع سنوي</div><div class="ftab" onclick="tabClick(this)">نصف سنوي</div><div class="ftab" onclick="tabClick(this)">سنوي</div></div><div class="rep-stats"><div class="rstat"><div class="rstat-v" style="color:var(--g)">284K</div><div class="rstat-l" id="rs1">إيرادات</div></div><div class="rstat"><div class="rstat-v" style="color:var(--r)">96K</div><div class="rstat-l" id="rs2">مصروفات</div></div><div class="rstat"><div class="rstat-v" style="color:var(--p)">188K</div><div class="rstat-l" id="rs3">صافي الربح</div></div></div><div class="rep-chart"><div class="sh-t" style="font-size:.82rem;margin-bottom:11px" id="rep-ch-tl">📈 مخطط الإيرادات الشهرية</div><svg viewBox="0 0 300 75" style="width:100%;height:85px" preserveAspectRatio="none"><defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d4f0" stop-opacity=".3"/><stop offset="100%" stop-color="#00d4f0" stop-opacity="0"/></linearGradient></defs><path d="M0,58 L50,44 L100,29 L150,33 L200,14 L250,19 L300,7" fill="none" stroke="#00d4f0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M0,58 L50,44 L100,29 L150,33 L200,14 L250,19 L300,7 L300,75 L0,75Z" fill="url(#rg)"/><circle cx="200" cy="14" r="4" fill="#00d4f0"/><circle cx="300" cy="7" r="4" fill="#00d4f0"/></svg></div><div class="sh"><div class="sh-t" id="rep-cat-tl">تقرير حسب الفئة</div></div><div class="rep-tbl"><div class="rtbl-hdr"><span id="rth1">الفئة</span><span id="rth2">المبيعات</span><span id="rth3">النمو</span></div><div id="repTblBody"></div></div><div class="act-row"><button class="btn-p2" onclick="toast('📄 جاري تصدير PDF')">📄 تصدير PDF</button><button class="btn-s2" onclick="toast('📊 تصدير Excel')">📊 Excel</button></div></div><div class="pv" id="stkPage"><div class="sh"><div class="sh-t" id="stk-tl">إدارة المخزون</div><button class="btn-p2" style="padding:7px 13px;font-size:.73rem;border-radius:8px;flex:none" onclick="toast('➕ إضافة منتج')">+ منتج</button></div><div class="srch-bar"><span>🔍</span><input type="text" id="stkSearch" placeholder="البحث في المنتجات..."><span style="cursor:pointer;color:var(--p);font-size:.9rem" onclick="toast('⚡ تصفية متقدمة')">⚡</span></div><div class="ftabs" id="stkCats"></div><div id="stkList"></div></div><div class="pv" id="setPage"><div class="sh"><div class="sh-t" id="set-tl">الإعدادات</div></div><div class="set-user"><div class="set-av" id="set-av">A</div><div><div class="set-name-lbl" id="set-nm">المدير المالي</div><div class="set-email">admin@fastflow.sa</div><div class="set-plan">الباقة الاحترافية ✓</div></div></div><div class="set-sec"><div class="set-sec-title" id="ss-lang">اللغة</div><div class="dr" style="margin-bottom:0"><div class="dr-btn" onclick="toggleDr('dr2')" id="dr2-btn"><span id="dr2-flag">🇸🇦</span><span id="dr2-lang" style="flex:1">العربية</span><span>▾</span></div><div class="dr-menu" id="dr2"></div></div></div><div class="set-sec"><div class="set-sec-title" id="ss-co">الشركة</div><div class="set-item" onclick="toast('🏢 إعدادات الشركة')"><div class="si-ico">🏢</div><div class="si-info"><div class="si-tl" id="si1">بيانات الشركة</div><div class="si-sb">الاسم، السجل التجاري، الرقم الضريبي</div></div><div class="si-ar">›</div></div><div class="set-item" onclick="toast('📄 قالب الفاتورة')"><div class="si-ico">📄</div><div class="si-info"><div class="si-tl" id="si2">قالب الفاتورة</div><div class="si-sb">الشعار، الألوان، الختم</div></div><div class="si-ar">›</div></div><div class="set-item" onclick="goScr('sectorScr')"><div class="si-ico" id="si-sec-ico">🏢</div><div class="si-info"><div class="si-tl">قطاع النشاط</div><div class="si-sb" id="si-sec-nm">شركات وأعمال</div></div><div class="si-ar">›</div></div><div class="set-item"><div class="si-ico">🔐</div><div class="si-info"><div class="si-tl">تكامل ZATCA</div><div class="si-sb">الفوترة الإلكترونية المرحلة الثانية</div></div><div class="si-ar" style="color:var(--g)">✓</div></div></div><div class="set-sec"><div class="set-sec-title" id="ss-pref">التفضيلات</div><div class="set-item"><div class="si-ico">🌙</div><div class="si-info"><div class="si-tl" id="st1">الوضع الليلي</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="set-item"><div class="si-ico">🤖</div><div class="si-info"><div class="si-tl" id="st2">المساعد الذكي AI</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="set-item"><div class="si-ico">🎤</div><div class="si-info"><div class="si-tl" id="st3">الأوامر الصوتية</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="set-item"><div class="si-ico">🔔</div><div class="si-info"><div class="si-tl" id="st4">الإشعارات</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div></div><div class="set-sec"><div class="set-sec-title" id="ss-sec">الأمان</div><div class="set-item"><div class="si-ico">🔒</div><div class="si-info"><div class="si-tl" id="si3">كلمة المرور</div><div class="si-sb">تغيير كلمة المرور</div></div><div class="si-ar">›</div></div><div class="set-item"><div class="si-ico">👆</div><div class="si-info"><div class="si-tl" id="si4">بصمة الإصبع</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div></div><button class="btn-logout" id="lout-btn" onclick="doLogout()">🚪 تسجيل الخروج</button></div></div><button class="vbtn" onclick="toast('🎤 قل: فاتورة جديدة أو عرض التقارير')">🎤</button><div class="bnav"><div class="bn on" id="bn-dsh" onclick="navTo('dashPage','bn-dsh')"><div class="bn-ico">🏠</div><div class="bn-lbl" id="bn1">الرئيسية</div></div><div class="bn" id="bn-inv" onclick="navTo('invPage','bn-inv')"><div class="bn-ico">🧾</div><div class="bn-lbl" id="bn2">الفواتير</div></div><div class="bn" id="bn-rep" onclick="navTo('repPage','bn-rep')"><div class="bn-ico">📊</div><div class="bn-lbl" id="bn3">التقارير</div></div><div class="bn" id="bn-stk" onclick="navTo('stkPage','bn-stk')"><div class="bn-ico">📦</div><div class="bn-lbl" id="bn4">المخزون</div></div><div class="bn" id="bn-set" onclick="navTo('setPage','bn-set')"><div class="bn-ico">⚙️</div><div class="bn-lbl" id="bn5">الإعدادات</div></div></div>
+</div><div id="appScr" class="scr"><div class="tnav"><div class="tn-l"><div class="tn-logo">FastFlow</div><div class="tn-sec" id="tn-sec">🏢 شركات وأعمال</div></div><div class="tn-acts"><div class="tn-btn" onclick="toast('🤖 المساعد الذكي')">🤖</div><div class="tn-btn" onclick="toast('🎤 أوامر صوتية')">🎤</div><div class="tn-btn">🔔<span class="nbdg">3</span></div><div class="tn-btn" onclick="navTo('setPage','bn-set')">⚙️</div></div></div><div class="acont" id="acont"><div class="pv on" id="dashPage"><div class="greet"><div class="greet-av" id="greet-av">A</div><div class="greet-info"><div class="greet-hi" id="greet-hi">صباح الخير 👋</div><div class="greet-name" id="greet-name">المدير المالي</div><div class="greet-date" id="greet-date"></div></div><div class="greet-badge"><span>🇸🇦 ZATCA</span><span style="margin-top:4px">🟢 متصل</span></div></div><div class="sh"><div class="sh-t" id="sh-ov">نظرة عامة</div><div class="sh-l">هذا الشهر ▾</div></div><div class="kgrid"><div class="kcard"><span class="k-ico">💰</span><div class="k-val">284,500</div><div class="k-lbl" id="k1">الإيرادات (ر.س)</div><div class="k-tr up">▲ 18.3%</div></div><div class="kcard"><span class="k-ico">📤</span><div class="k-val">96,200</div><div class="k-lbl" id="k2">المصروفات (ر.س)</div><div class="k-tr dn">▼ 4.1%</div></div><div class="kcard"><span class="k-ico">🧾</span><div class="k-val">47</div><div class="k-lbl" id="k3">فواتير هذا الشهر</div><div class="k-tr up">▲ 12 جديدة</div></div><div class="kcard"><span class="k-ico">📦</span><div class="k-val">1,284</div><div class="k-lbl" id="k4">المخزون (وحدة)</div><div class="k-tr" style="color:var(--o)">⚠ 8 منخفضة</div></div></div><div class="ai-box"><div class="ai-hd"><div class="ai-dot"></div><div class="ai-title" id="ai-tl">المساعد المالي الذكي</div><div class="ai-badge">AI</div></div><div class="ai-txt" id="ai-txt">🚀 مرحباً! ابدأ بإنشاء أول فاتورة إلكترونية أو أضف منتجات للمخزون. سيقوم المساعد الذكي بتحليل بياناتك تلقائياً.</div><div class="ai-chips" id="ai-chips"><div class="chip" onclick="navTo('repPage','bn-rep')">📊 تقرير سريع</div><div class="chip" onclick="navTo('newInvPage','bn-inv')">🧾 فاتورة جديدة</div><div class="chip" onclick="toast('💰 تحليل التدفق النقدي')">💰 تحليل ذكي</div></div></div><div class="sh"><div class="sh-t" id="sh-qa">إجراءات سريعة</div></div><div class="qa-row" id="qaRow"></div><div class="chart-card"><div class="sh"><div class="sh-t" id="sh-ch">الإيرادات والمصروفات</div><div class="sh-l">6 أشهر</div></div><div class="bars"><div class="bw"><div class="bar" style="height:55%"></div><div class="bl">ديس</div></div><div class="bw"><div class="bar alt" style="height:37%"></div><div class="bl">ديس</div></div><div class="bw"><div class="bar" style="height:68%"></div><div class="bl">يناير</div></div><div class="bw"><div class="bar alt" style="height:32%"></div><div class="bl">يناير</div></div><div class="bw"><div class="bar" style="height:74%"></div><div class="bl">فبراير</div></div><div class="bw"><div class="bar alt" style="height:41%"></div><div class="bl">فبراير</div></div><div class="bw"><div class="bar" style="height:82%"></div><div class="bl">مارس</div></div><div class="bw"><div class="bar alt" style="height:35%"></div><div class="bl">مارس</div></div><div class="bw"><div class="bar" style="height:66%"></div><div class="bl">أبريل</div></div><div class="bw"><div class="bar alt" style="height:39%"></div><div class="bl">أبريل</div></div><div class="bw"><div class="bar" style="height:92%"></div><div class="bl">مايو</div></div><div class="bw"><div class="bar alt" style="height:27%"></div><div class="bl">مايو</div></div></div><div class="chart-legend"><div class="leg"><div class="leg-dot" style="background:#00d4f0"></div><span id="leg1">الإيرادات</span></div><div class="leg"><div class="leg-dot" style="background:#c084fc"></div><span id="leg2">المصروفات</span></div></div></div><div class="sh"><div class="sh-t" id="sh-mod">وحدات القطاع</div></div><div class="mod-grid" id="modGrid"></div><div class="sh"><div class="sh-t" id="sh-rec">آخر المعاملات</div><div class="sh-l" onclick="navTo('invPage','bn-inv')">عرض الكل</div></div><div class="r-list" id="recList"></div></div><div class="pv" id="invPage"><div class="sh"><div class="sh-t" id="inv-tl">الفواتير الإلكترونية</div><button class="btn-p2" style="padding:7px 13px;font-size:.73rem;border-radius:8px;flex:none" onclick="navTo('newInvPage','bn-inv')">+ جديد</button></div><div class="ftabs"><div class="ftab on" onclick="tabClick(this)">الكل (47)</div><div class="ftab" onclick="tabClick(this)">مدفوعة (31)</div><div class="ftab" onclick="tabClick(this)">معلقة (11)</div><div class="ftab" onclick="tabClick(this)">متأخرة (5)</div><div class="ftab" onclick="tabClick(this)">مسودة (8)</div></div><div id="invList"></div></div><div class="pv" id="newInvPage"><div class="sh"><div class="sh-t" id="ni-tl">إنشاء فاتورة إلكترونية</div></div><div class="fsec"><div class="fst">📋 بيانات الفاتورة</div><div class="frow"><div><div class="fl">نوع الفاتورة</div><select class="ff"><option>فاتورة ضريبية</option><option>فاتورة مبسطة</option><option>إشعار دائن</option><option>إشعار مدين</option></select></div><div><div class="fl">تاريخ الفاتورة</div><input class="ff" type="date" value="2026-05-09"></div></div><div class="frow"><div><div class="fl">رقم الفاتورة</div><input class="ff" value="INV-2026-0048"></div><div><div class="fl">تاريخ الاستحقاق</div><input class="ff" type="date"></div></div></div><div class="fsec"><div class="fst">👤 بيانات العميل</div><div class="frow full"><div class="fl">اسم العميل</div><input class="ff" placeholder="اختر أو أدخل اسم العميل"></div><div class="frow"><div><div class="fl">الرقم الضريبي</div><input class="ff" placeholder="300XXXXXXXXX"></div><div><div class="fl">السجل التجاري</div><input class="ff" placeholder="1XXXXXXXXX"></div></div><div class="frow full"><div class="fl">العنوان</div><input class="ff" placeholder="المدينة، الحي، الشارع"></div></div><div class="fsec"><div class="fst">📦 بنود الفاتورة</div><table class="ittbl"><thead><tr><th>الصنف</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th></tr></thead><tbody id="itmTbl"><tr><td>خدمة استشارية</td><td>2</td><td>2,500</td><td style="color:var(--p);font-weight:700;font-family:'Poppins',sans-serif">5,000</td></tr><tr><td>ترخيص برمجي</td><td>1</td><td>3,000</td><td style="color:var(--p);font-weight:700;font-family:'Poppins',sans-serif">3,000</td></tr></tbody></table><button class="add-row" onclick="addItem()">+ إضافة بند</button><div class="totbox"><div class="trow"><span>المجموع قبل الضريبة</span><span class="tamt">8,000.00 ر.س</span></div><div class="trow"><span>ضريبة القيمة المضافة (15%)</span><span class="tamt">1,200.00 ر.س</span></div><div class="trow"><span>الخصم</span><span class="tamt">0.00 ر.س</span></div><div class="trow tfin"><span>الإجمالي النهائي</span><span class="tamt" style="font-size:.92rem">9,200.00 ر.س</span></div></div><div class="zatca-box"><div style="font-size:1.3rem">🔐</div><div><div class="zt">معتمدة من ZATCA — المرحلة الثانية</div><div class="zs">تستوفي متطلبات الفوترة الإلكترونية بالكامل</div></div></div></div><div class="act-row"><button class="btn-p2" onclick="toast('✅ تم إرسال الفاتورة بنجاح')">📤 إصدار وإرسال</button><button class="btn-s2" onclick="toast('💾 تم حفظ المسودة')">💾 حفظ</button></div></div><div class="pv" id="repPage"><div class="sh"><div class="sh-t" id="rep-tl">التقارير المالية</div><div class="sh-l" onclick="toast('📄 جاري التصدير')">⬇ تصدير</div></div><div class="ftabs"><div class="ftab on" onclick="tabClick(this)">يومي</div><div class="ftab" onclick="tabClick(this)">أسبوعي</div><div class="ftab" onclick="tabClick(this)">شهري</div><div class="ftab" onclick="tabClick(this)">ربع سنوي</div><div class="ftab" onclick="tabClick(this)">نصف سنوي</div><div class="ftab" onclick="tabClick(this)">سنوي</div></div><div class="rep-stats"><div class="rstat"><div class="rstat-v" style="color:var(--g)">284K</div><div class="rstat-l" id="rs1">إيرادات</div></div><div class="rstat"><div class="rstat-v" style="color:var(--r)">96K</div><div class="rstat-l" id="rs2">مصروفات</div></div><div class="rstat"><div class="rstat-v" style="color:var(--p)">188K</div><div class="rstat-l" id="rs3">صافي الربح</div></div></div><div class="rep-chart"><div class="sh-t" style="font-size:.82rem;margin-bottom:11px" id="rep-ch-tl">📈 مخطط الإيرادات الشهرية</div><svg viewBox="0 0 300 75" style="width:100%;height:85px" preserveAspectRatio="none"><defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d4f0" stop-opacity=".3"/><stop offset="100%" stop-color="#00d4f0" stop-opacity="0"/></linearGradient></defs><path d="M0,58 L50,44 L100,29 L150,33 L200,14 L250,19 L300,7" fill="none" stroke="#00d4f0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M0,58 L50,44 L100,29 L150,33 L200,14 L250,19 L300,7 L300,75 L0,75Z" fill="url(#rg)"/><circle cx="200" cy="14" r="4" fill="#00d4f0"/><circle cx="300" cy="7" r="4" fill="#00d4f0"/></svg></div><div class="sh"><div class="sh-t" id="rep-cat-tl">تقرير حسب الفئة</div></div><div class="rep-tbl"><div class="rtbl-hdr"><span id="rth1">الفئة</span><span id="rth2">المبيعات</span><span id="rth3">النمو</span></div><div id="repTblBody"></div></div><div class="act-row"><button class="btn-p2" onclick="toast('📄 جاري تصدير PDF')">📄 تصدير PDF</button><button class="btn-s2" onclick="toast('📊 تصدير Excel')">📊 Excel</button></div></div><div class="pv" id="stkPage"><div class="sh"><div class="sh-t" id="stk-tl">إدارة المخزون</div><button class="btn-p2" style="padding:7px 13px;font-size:.73rem;border-radius:8px;flex:none" onclick="toast('➕ إضافة منتج')">+ منتج</button></div><div class="srch-bar"><span>🔍</span><input type="text" id="stkSearch" placeholder="البحث في المنتجات..."><span style="cursor:pointer;color:var(--p);font-size:.9rem" onclick="toast('⚡ تصفية متقدمة')">⚡</span></div><div class="ftabs" id="stkCats"></div><div id="stkList"></div></div><div class="pv" id="setPage"><div class="sh"><div class="sh-t" id="set-tl">الإعدادات</div></div><div class="set-user"><div class="set-av" id="set-av">A</div><div><div class="set-name-lbl" id="set-nm">المدير المالي</div><div class="set-email">admin@fastflow.sa</div><div class="set-plan">الباقة الاحترافية ✓</div></div></div><div class="set-sec"><div class="set-sec-title" id="ss-lang">اللغة</div><div class="dr" style="margin-bottom:0"><div class="dr-btn" onclick="toggleDr('dr2')" id="dr2-btn"><span id="dr2-flag">🇸🇦</span><span id="dr2-lang" style="flex:1">العربية</span><span>▾</span></div><div class="dr-menu" id="dr2"></div></div></div><div class="set-sec"><div class="set-sec-title" id="ss-co">الشركة</div><div class="set-item" onclick="toast('🏢 إعدادات الشركة')"><div class="si-ico">🏢</div><div class="si-info"><div class="si-tl" id="si1">بيانات الشركة</div><div class="si-sb">الاسم، السجل التجاري، الرقم الضريبي</div></div><div class="si-ar">›</div></div><div class="set-item" onclick="toast('📄 قالب الفاتورة')"><div class="si-ico">📄</div><div class="si-info"><div class="si-tl" id="si2">قالب الفاتورة</div><div class="si-sb">الشعار، الألوان، الختم</div></div><div class="si-ar">›</div></div><div class="set-item" onclick="goScr('sectorScr')"><div class="si-ico" id="si-sec-ico">🏢</div><div class="si-info"><div class="si-tl">قطاع النشاط</div><div class="si-sb" id="si-sec-nm">شركات وأعمال</div></div><div class="si-ar">›</div></div><div class="set-item" onclick="toast(CL==='ar'?'🔐 ZATCA: مرتبط ومفعّل — المرحلة الثانية':'🔐 ZATCA: Linked & Active — Phase 2')">
+  <div class="si-ico">🔐</div>
+  <div class="si-info">
+    <div class="si-tl">تكامل ZATCA</div>
+    <div class="si-sb" style="color:var(--g)">✅ الفوترة الإلكترونية — المرحلة الثانية — مفعّلة</div>
+  </div>
+  <div class="si-ar" style="color:var(--g)">✓</div>
+</div>
+<div class="set-item" onclick="toast(CL==='ar'?'🇸🇦 معايير الجودة السعودية — SASO معتمد':'🇸🇦 Saudi Quality Standards — SASO Certified')">
+  <div class="si-ico">🇸🇦</div>
+  <div class="si-info">
+    <div class="si-tl">معايير الجودة السعودية SASO</div>
+    <div class="si-sb" style="color:var(--g)">✅ متوافق مع متطلبات هيئة المواصفات</div>
+  </div>
+  <div class="si-ar" style="color:var(--g)">✓</div>
+</div>
+<div class="set-item" onclick="showVatSettings()">
+  <div class="si-ico">🧮</div>
+  <div class="si-info">
+    <div class="si-tl">ضريبة القيمة المضافة VAT</div>
+    <div class="si-sb" id="vat-rate-lbl">نسبة الضريبة: 15% — حسب نظام ضريبة القيمة المضافة السعودي</div>
+  </div>
+  <div class="si-ar">›</div>
+</div>
+<div class="set-item" onclick="toast(CL==='ar'?'📋 نظام الفاتورة الإلكترونية — لوائح هيئة الزكاة':'📋 E-Invoicing System — ZATCA Regulations')">
+  <div class="si-ico">📋</div>
+  <div class="si-info">
+    <div class="si-tl">نظام الفوترة الإلكترونية</div>
+    <div class="si-sb">متوافق مع لوائح هيئة الزكاة والضريبة والجمارك</div>
+  </div>
+  <div class="si-ar" style="color:var(--g)">✓</div>
+</div></div><div class="set-sec"><div class="set-sec-title" id="ss-pref">التفضيلات</div><div class="set-item"><div class="si-ico">🌙</div><div class="si-info"><div class="si-tl" id="st1">الوضع الليلي</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="set-item"><div class="si-ico">🤖</div><div class="si-info"><div class="si-tl" id="st2">المساعد الذكي AI</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="set-item"><div class="si-ico">🎤</div><div class="si-info"><div class="si-tl" id="st3">الأوامر الصوتية</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div><div class="set-item"><div class="si-ico">🔔</div><div class="si-info"><div class="si-tl" id="st4">الإشعارات</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div></div><div class="set-sec"><div class="set-sec-title" id="ss-sec">الأمان</div><div class="set-item"><div class="si-ico">🔒</div><div class="si-info"><div class="si-tl" id="si3">كلمة المرور</div><div class="si-sb">تغيير كلمة المرور</div></div><div class="si-ar">›</div></div><div class="set-item"><div class="si-ico">👆</div><div class="si-info"><div class="si-tl" id="si4">بصمة الإصبع</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div></div><button class="btn-logout" id="lout-btn" onclick="doLogout()">🚪 تسجيل الخروج</button></div></div><button class="vbtn" onclick="toast('🎤 قل: فاتورة جديدة أو عرض التقارير')">🎤</button><div class="bnav"><div class="bn on" id="bn-dsh" onclick="navTo('dashPage','bn-dsh')"><div class="bn-ico">🏠</div><div class="bn-lbl" id="bn1">الرئيسية</div></div><div class="bn" id="bn-inv" onclick="navTo('invPage','bn-inv')"><div class="bn-ico">🧾</div><div class="bn-lbl" id="bn2">الفواتير</div></div><div class="bn" id="bn-rep" onclick="navTo('repPage','bn-rep')"><div class="bn-ico">📊</div><div class="bn-lbl" id="bn3">التقارير</div></div><div class="bn" id="bn-stk" onclick="navTo('stkPage','bn-stk')"><div class="bn-ico">📦</div><div class="bn-lbl" id="bn4">المخزون</div></div><div class="bn" id="bn-set" onclick="navTo('setPage','bn-set')"><div class="bn-ico">⚙️</div><div class="bn-lbl" id="bn5">الإعدادات</div></div></div>
 </div><div id="statusBar"></div>
 <div id="netDot" onclick="toast(navigator.onLine?'🟢 متصل':'🟡 أوفلاين')"></div>
 <div class="toast" id="toastEl"></div>
@@ -137,7 +168,7 @@ mods:[{i:'👥',n:{ar:'الموارد البشرية',en:'Human Resources'},d:{a
 inv:[{i:'💻',n:'Dell XPS 15',c:'أجهزة · EL-001',s:47,st:'ok'},{i:'🖨️',n:'طابعة HP',c:'مستهلكات · PR-001',s:0,st:'out'},{i:'🪑',n:'كرسي Ergonomic',c:'أثاث · FN-001',s:124,st:'ok'},{i:'📱',n:'iPhone 16 Pro',c:'أجهزة · EL-002',s:8,st:'low'}],
 cats:[{ar:'الكل',en:'All'},{ar:'أجهزة',en:'Devices'},{ar:'أثاث',en:'Furniture'},{ar:'مستهلكات',en:'Consumables'}],
 rep:[{a:'🖥 التقنية',e:'🖥 Technology',v:'98,500',g:'+22%'},{a:'🏗 الإنشاء',e:'🏗 Construction',v:'74,200',g:'+15%'},{a:'📋 الاستشارات',e:'📋 Consulting',v:'56,800',g:'-3%'}],
-rec:[{i:'🧾',t:{ar:'فاتورة مبيعات — شركة الأفق',en:'Invoice — Al Afaq Co.'},s:'INV-2026-0047',a:'+12,500 ر.س',c:'pos'},{i:'📤',t:{ar:'مصروف موردين',en:'Supplier Expense'},s:'EXP-2026-0031',a:'-4,200 ر.س',c:'neg'},{i:'⏳',t:{ar:'فاتورة معلقة — الريادة',en:'Pending Invoice'},s:'INV-2026-0046',a:'8,750 ر.س',c:'pen'}]},
+rec:[]},
 {id:'restaurant',ico:'🍽️',name:{ar:'مطاعم',en:'Restaurants',fr:'Restaurants',de:'Restaurants',es:'Restaurantes'},
 desc:{ar:'طلبات، مبيعات، مخزون المطبخ',en:'Orders, Sales, Kitchen Stock',fr:'Commandes, ventes',de:'Bestellungen, Umsatz',es:'Pedidos, ventas'},
 qa:[{i:'🧾',l:'inv'},{i:'🍕',l:{ar:'قائمة',en:'Menu'}},{i:'📦',l:'stk'},{i:'👨‍🍳',l:{ar:'المطبخ',en:'Kitchen'}},{i:'🚚',l:{ar:'توصيل',en:'Delivery'}},{i:'📊',l:'rep'},{i:'👥',l:{ar:'موظفون',en:'Staff'}},{i:'🧮',l:{ar:'VAT',en:'VAT'}}],
@@ -145,7 +176,7 @@ mods:[{i:'🍕',n:{ar:'قائمة الطعام',en:'Food Menu'},d:{ar:'الأص�
 inv:[{i:'🥩',n:'لحم بقري',c:'بروتينات · MT-001',s:45,st:'ok'},{i:'🥦',n:'خضروات طازجة',c:'خضروات · VG-001',s:12,st:'low'},{i:'🌾',n:'دقيق القمح',c:'حبوب · GR-001',s:0,st:'out'},{i:'🛢️',n:'زيت نباتي',c:'زيوت · OL-001',s:30,st:'ok'}],
 cats:[{ar:'الكل',en:'All'},{ar:'بروتينات',en:'Proteins'},{ar:'خضروات',en:'Vegetables'},{ar:'حبوب',en:'Grains'}],
 rep:[{a:'🍖 المشويات',e:'🍖 Grills',v:'45,200',g:'+18%'},{a:'🍝 المعكرونة',e:'🍝 Pasta',v:'28,100',g:'+12%'},{a:'🥗 السلطات',e:'🥗 Salads',v:'15,800',g:'+5%'}],
-rec:[{i:'🧾',t:{ar:'طلب مائدة 12',en:'Table 12 Order'},s:'ORD-2026-0312',a:'+380 ر.س',c:'pos'},{i:'🚚',t:{ar:'توصيل حي الورود',en:'Delivery — Al Wurood'},s:'DEL-2026-0089',a:'+220 ر.س',c:'pos'},{i:'📦',t:{ar:'مشتريات مطبخ',en:'Kitchen Purchases'},s:'PUR-2026-0044',a:'-1,200 ر.س',c:'neg'}]},
+rec:[]},
 {id:'cafe',ico:'☕',name:{ar:'كافيهات ومقاهي',en:'Cafes & Coffee Shops',fr:'Cafés',de:'Cafés',es:'Cafeterías'},
 desc:{ar:'مشروبات، قهوة، مخزون',en:'Beverages, Coffee, Stock',fr:'Boissons, café',de:'Getränke, Kaffee',es:'Bebidas, café'},
 qa:[{i:'☕',l:{ar:'قائمة',en:'Menu'}},{i:'🧾',l:'inv'},{i:'📦',l:'stk'},{i:'📊',l:'rep'},{i:'🎂',l:{ar:'حلويات',en:'Pastries'}},{i:'💳',l:{ar:'نقاط',en:'Loyalty'}},{i:'👥',l:{ar:'موظفون',en:'Staff'}},{i:'🧮',l:{ar:'VAT',en:'VAT'}}],
@@ -153,7 +184,7 @@ mods:[{i:'☕',n:{ar:'قائمة المشروبات',en:'Drinks Menu'},d:{ar:'ق
 inv:[{i:'☕',n:'حبوب قهوة',c:'قهوة · CF-001',s:18,st:'low'},{i:'🥛',n:'حليب طازج',c:'ألبان · ML-001',s:45,st:'ok'},{i:'🍫',n:'شوكولاتة',c:'إضافات · CH-001',s:0,st:'out'},{i:'🧋',n:'شاي أخضر',c:'شاي · TE-001',s:22,st:'ok'}],
 cats:[{ar:'الكل',en:'All'},{ar:'قهوة',en:'Coffee'},{ar:'ألبان',en:'Dairy'},{ar:'إضافات',en:'Extras'}],
 rep:[{a:'☕ قهوة',e:'☕ Coffee',v:'22,400',g:'+25%'},{a:'🥤 عصائر',e:'🥤 Juices',v:'14,200',g:'+8%'},{a:'🎂 كيك',e:'🎂 Cake',v:'8,600',g:'+15%'}],
-rec:[{i:'☕',t:{ar:'مبيعات الصباح',en:'Morning Sales'},s:'SHIFT-AM-0089',a:'+1,240 ر.س',c:'pos'},{i:'📦',t:{ar:'توريد قهوة',en:'Coffee Supply'},s:'SUP-2026-0023',a:'-850 ر.س',c:'neg'},{i:'💳',t:{ar:'نقاط ولاء',en:'Loyalty Points'},s:'LYL-2026-0144',a:'340 نقطة',c:'pen'}]},
+rec:[]},
 {id:'gold',ico:'💎',name:{ar:'ذهب وفضة وماس',en:'Gold, Silver & Diamonds',fr:'Or & Diamants',de:'Gold & Diamanten',es:'Oro y Diamantes'},
 desc:{ar:'أسعار لحظية، وزن، عيار',en:'Live prices, weight, purity',fr:'Prix live, poids',de:'Live-Preise, Gewicht',es:'Precios live, peso'},
 qa:[{i:'⚖️',l:{ar:'الوزن',en:'Weight'}},{i:'💰',l:{ar:'الأسعار',en:'Prices'}},{i:'🧾',l:'inv'},{i:'📦',l:'stk'},{i:'📊',l:'rep'},{i:'🔍',l:{ar:'تقييم',en:'Appraise'}},{i:'♻️',l:{ar:'شراء',en:'Buy Back'}},{i:'🧮',l:{ar:'VAT',en:'VAT'}}],
@@ -161,7 +192,7 @@ mods:[{i:'📈',n:{ar:'أسعار الذهب اللحظية',en:'Live Gold Price
 inv:[{i:'💍',n:'خاتم ذهب 21 — 5.2g',c:'مجوهرات · GD-001',s:24,st:'ok'},{i:'📿',n:'سلسلة فضة — 12g',c:'فضة · SV-001',s:8,st:'low'},{i:'💎',n:'ماس 0.5 قيراط',c:'أحجار · DM-001',s:3,st:'low'},{i:'🥇',n:'سبيكة ذهب 10g',c:'سبائك · BAR-001',s:15,st:'ok'}],
 cats:[{ar:'الكل',en:'All'},{ar:'ذهب',en:'Gold'},{ar:'فضة',en:'Silver'},{ar:'ماس',en:'Diamonds'}],
 rep:[{a:'💍 مجوهرات',e:'💍 Jewelry',v:'128,400',g:'+32%'},{a:'🥇 سبائك',e:'🥇 Bullion',v:'95,200',g:'+18%'},{a:'💎 أحجار',e:'💎 Gems',v:'64,100',g:'+8%'}],
-rec:[{i:'💍',t:{ar:'بيع خاتم ذهب 21 — 8g',en:'Gold Ring 21K — 8g'},s:'GLD-2026-0087',a:'+2,240 ر.س',c:'pos'},{i:'⚖️',t:{ar:'شراء ذهب قديم — 15g',en:'Buy Back Gold 15g'},s:'BUY-2026-0034',a:'-3,600 ر.س',c:'neg'},{i:'💎',t:{ar:'تقييم ماس',en:'Diamond Appraisal'},s:'APR-2026-0012',a:'150 ر.س',c:'pen'}]},
+rec:[]},
 {id:'optics',ico:'👓',name:{ar:'بصريات ونظارات',en:'Optics & Eyewear',fr:'Optique',de:'Optik',es:'Óptica'},
 desc:{ar:'وصفات، عدسات، إطارات',en:'Prescriptions, lenses, frames',fr:'Ordonnances, verres',de:'Rezepte, Linsen',es:'Recetas, lentes'},
 qa:[{i:'👓',l:{ar:'نظارات',en:'Glasses'}},{i:'🔬',l:{ar:'فحص',en:'Eye Test'}},{i:'📋',l:{ar:'وصفات',en:'Rx'}},{i:'🧾',l:'inv'},{i:'📦',l:'stk'},{i:'📅',l:{ar:'مواعيد',en:'Appts'}},{i:'📊',l:'rep'},{i:'🧮',l:{ar:'VAT',en:'VAT'}}],
@@ -169,7 +200,7 @@ mods:[{i:'🔬',n:{ar:'سجلات الفحص البصري',en:'Eye Exam Records'
 inv:[{i:'👓',n:'إطار Ray-Ban RB2140',c:'إطارات · FR-001',s:12,st:'ok'},{i:'🔭',n:'عدسات -2.50 يومية',c:'عدسات · LN-001',s:5,st:'low'},{i:'🕶️',n:'نظارة شمسية Oakley',c:'شمسية · SN-001',s:0,st:'out'},{i:'🔬',n:'محلول عدسات 500ml',c:'مستهلكات · CL-001',s:30,st:'ok'}],
 cats:[{ar:'الكل',en:'All'},{ar:'إطارات',en:'Frames'},{ar:'عدسات',en:'Lenses'},{ar:'شمسية',en:'Sunglasses'}],
 rep:[{a:'👓 إطارات',e:'👓 Frames',v:'38,400',g:'+12%'},{a:'🔭 عدسات',e:'🔭 Lenses',v:'24,100',g:'+8%'},{a:'🕶️ شمسية',e:'🕶️ Sunglasses',v:'15,200',g:'+20%'}],
-rec:[{i:'👓',t:{ar:'نظارة طبية — عميل 324',en:'Prescription Glasses — 324'},s:'OPT-2026-0145',a:'+680 ر.س',c:'pos'},{i:'🔬',t:{ar:'فحص بصري + وصفة',en:'Eye Exam + Rx'},s:'EXM-2026-0089',a:'+120 ر.س',c:'pos'},{i:'📦',t:{ar:'توريد عدسات',en:'Lens Supply'},s:'SUP-2026-0034',a:'-2,400 ر.س',c:'neg'}]},
+rec:[]},
 {id:'hospital',ico:'🏥',name:{ar:'مستشفيات وعيادات',en:'Hospitals & Clinics',fr:'Hôpitaux',de:'Kliniken',es:'Clínicas'},
 desc:{ar:'مرضى، طبي، تأمين صحي',en:'Patients, medical, insurance',fr:'Patients, médical',de:'Patienten, Versicherung',es:'Pacientes, seguro'},
 qa:[{i:'🏥',l:{ar:'مرضى',en:'Patients'}},{i:'📋',l:{ar:'سجلات',en:'Records'}},{i:'💊',l:{ar:'أدوية',en:'Meds'}},{i:'🧾',l:'inv'},{i:'🩺',l:{ar:'مواعيد',en:'Appts'}},{i:'🛡️',l:{ar:'تأمين',en:'Insurance'}},{i:'📊',l:'rep'},{i:'🧮',l:{ar:'VAT',en:'VAT'}}],
@@ -177,7 +208,7 @@ mods:[{i:'🩺',n:{ar:'سجلات المرضى',en:'Patient Records'},d:{ar:'ت�
 inv:[{i:'💊',n:'بنسلين 500mg',c:'مضادات حيوية · AB-001',s:240,st:'ok'},{i:'💉',n:'محاليل وريدية',c:'محاليل · IV-001',s:15,st:'low'},{i:'🩹',n:'مستلزمات إسعاف',c:'مستلزمات · FA-001',s:0,st:'out'},{i:'🔬',n:'مستلزمات مختبر',c:'مختبر · LAB-001',s:88,st:'ok'}],
 cats:[{ar:'الكل',en:'All'},{ar:'أدوية',en:'Medicine'},{ar:'محاليل',en:'IV Fluids'},{ar:'مستهلكات',en:'Supplies'}],
 rep:[{a:'🩺 استشارات',e:'🩺 Consultations',v:'64,200',g:'+8%'},{a:'🔬 مختبر',e:'🔬 Lab',v:'28,400',g:'+15%'},{a:'🛡️ تأمين',e:'🛡️ Insurance',v:'95,100',g:'+12%'}],
-rec:[{i:'🩺',t:{ar:'استشارة — مريض 1204',en:'Consultation — Patient 1204'},s:'CON-2026-0312',a:'+350 ر.س',c:'pos'},{i:'🛡️',t:{ar:'مطالبة تأمين BUPA',en:'Insurance Claim BUPA'},s:'INS-2026-0089',a:'+2,800 ر.س',c:'pos'},{i:'💊',t:{ar:'توريد أدوية',en:'Medicine Supply'},s:'SUP-2026-0067',a:'-4,500 ر.س',c:'neg'}]},
+rec:[]},
 {id:'pharmacy',ico:'💊',name:{ar:'صيدليات',en:'Pharmacies',fr:'Pharmacies',de:'Apotheken',es:'Farmacias'},
 desc:{ar:'أدوية، وصفات، مخزون',en:'Medicines, prescriptions, stock',fr:'Médicaments, ordonnances',de:'Medikamente, Rezepte',es:'Medicamentos, recetas'},
 qa:[{i:'💊',l:{ar:'أدوية',en:'Meds'}},{i:'📋',l:{ar:'وصفات',en:'Rx'}},{i:'🧾',l:'inv'},{i:'📦',l:'stk'},{i:'📅',l:{ar:'انتهاء',en:'Expiry'}},{i:'🔍',l:{ar:'بحث',en:'Search'}},{i:'📊',l:'rep'},{i:'🧮',l:{ar:'VAT',en:'VAT'}}],
@@ -185,7 +216,7 @@ mods:[{i:'📋',n:{ar:'الوصفات الطبية',en:'Prescriptions'},d:{ar:'�
 inv:[{i:'💊',n:'باراسيتامول 500mg',c:'مسكنات · PA-001',s:480,st:'ok'},{i:'💉',n:'أنسولين Novo',c:'سكري · IN-001',s:22,st:'low'},{i:'🩺',n:'جهاز قياس ضغط',c:'أجهزة · BP-001',s:0,st:'out'},{i:'🌿',n:'فيتامين C 1000mg',c:'مكملات · VT-001',s:156,st:'ok'}],
 cats:[{ar:'الكل',en:'All'},{ar:'مسكنات',en:'Analgesics'},{ar:'مضادات',en:'Antibiotics'},{ar:'مكملات',en:'Supplements'}],
 rep:[{a:'💊 أدوية',e:'💊 Medicines',v:'42,800',g:'+6%'},{a:'🌿 مكملات',e:'🌿 Supplements',v:'18,200',g:'+18%'},{a:'🩺 أجهزة',e:'🩺 Devices',v:'12,400',g:'+10%'}],
-rec:[{i:'💊',t:{ar:'صرف وصفة #4521',en:'Dispensed Rx #4521'},s:'RX-2026-4521',a:'+245 ر.س',c:'pos'},{i:'📦',t:{ar:'توريد أدوية أسبوعي',en:'Weekly Medicine Supply'},s:'SUP-2026-0088',a:'-6,200 ر.س',c:'neg'},{i:'⚠️',t:{ar:'تنبيه: دواء قارب الانتهاء',en:'Alert: Medicine Expiring'},s:'EXP-2026-0034',a:'تحذير',c:'pen'}]},
+rec:[]},
 {id:'retail',ico:'🛍️',name:{ar:'تجزئة ومحلات',en:'Retail & Stores',fr:'Commerce',de:'Einzelhandel',es:'Comercio'},
 desc:{ar:'مبيعات، مخزون، نقاط بيع',en:'Sales, inventory, POS',fr:'Ventes, stock',de:'Verkauf, Lager',es:'Ventas, stock'},
 qa:[{i:'🛒',l:{ar:'نقطة بيع',en:'POS'}},{i:'🧾',l:'inv'},{i:'📦',l:'stk'},{i:'📊',l:'rep'},{i:'🏷️',l:{ar:'خصومات',en:'Discounts'}},{i:'↩️',l:{ar:'مرتجعات',en:'Returns'}},{i:'👥',l:{ar:'عملاء',en:'Customers'}},{i:'🧮',l:{ar:'VAT',en:'VAT'}}],
@@ -193,7 +224,7 @@ mods:[{i:'🛒',n:{ar:'نقطة البيع POS',en:'Point of Sale'},d:{ar:'كا�
 inv:[{i:'👕',n:'تيشيرت قطن L',c:'ملابس · CL-001',s:45,st:'ok'},{i:'👟',n:'حذاء رياضي 42',c:'أحذية · SH-001',s:8,st:'low'},{i:'👜',n:'حقيبة يد جلد',c:'اكسسوارات · BG-001',s:0,st:'out'},{i:'🕶️',n:'نظارة شمسية',c:'اكسسوارات · GL-001',s:22,st:'ok'}],
 cats:[{ar:'الكل',en:'All'},{ar:'ملابس',en:'Clothing'},{ar:'أحذية',en:'Footwear'},{ar:'اكسسوارات',en:'Accessories'}],
 rep:[{a:'👕 ملابس',e:'👕 Clothing',v:'58,400',g:'+22%'},{a:'👟 أحذية',e:'👟 Footwear',v:'34,200',g:'+15%'},{a:'👜 اكسسوارات',e:'👜 Accessories',v:'18,600',g:'+8%'}],
-rec:[{i:'🛒',t:{ar:'مبيعات POS — الصباح',en:'POS Sales — Morning'},s:'POS-2026-0891',a:'+4,240 ر.س',c:'pos'},{i:'↩️',t:{ar:'مرتجع — عميل 4521',en:'Return — Customer 4521'},s:'RET-2026-0089',a:'-280 ر.س',c:'neg'},{i:'🏷️',t:{ar:'خصم 20% على الملابس',en:'20% Clothes Discount'},s:'OFF-2026-0034',a:'عرض نشط',c:'pen'}]},
+rec:[]},
 {id:'construction',ico:'🏗️',name:{ar:'مقاولات وإنشاء',en:'Construction',fr:'Construction',de:'Bauwesen',es:'Construcción'},
 desc:{ar:'مشاريع، مقاولون، مواد',en:'Projects, contractors, materials',fr:'Projets, entrepreneurs',de:'Projekte, Auftragnehmer',es:'Proyectos'},
 qa:[{i:'🏗️',l:{ar:'مشاريع',en:'Projects'}},{i:'🧾',l:{ar:'مستخلص',en:'Claim'}},{i:'📦',l:'stk'},{i:'👷',l:{ar:'عمال',en:'Workers'}},{i:'📊',l:'rep'},{i:'📋',l:{ar:'عقود',en:'Contracts'}},{i:'🚚',l:{ar:'معدات',en:'Equipment'}},{i:'🧮',l:{ar:'VAT',en:'VAT'}}],
@@ -201,7 +232,7 @@ mods:[{i:'🏗️',n:{ar:'إدارة المشاريع',en:'Project Management'},
 inv:[{i:'🧱',n:'طوب أحمر 1000 وحدة',c:'مواد · BR-001',s:200,st:'ok'},{i:'🏗️',n:'حديد تسليح 12mm',c:'معادن · IR-001',s:15,st:'low'},{i:'🪣',n:'أسمنت 50kg',c:'خرسانة · CM-001',s:0,st:'out'},{i:'🪟',n:'نوافذ ألومنيوم',c:'تشطيب · WN-001',s:48,st:'ok'}],
 cats:[{ar:'الكل',en:'All'},{ar:'مواد',en:'Materials'},{ar:'معادن',en:'Metals'},{ar:'تشطيب',en:'Finishing'}],
 rep:[{a:'🏗️ مشروع A',e:'🏗️ Project A',v:'485,000',g:'+5%'},{a:'🏘️ مشروع B',e:'🏘️ Project B',v:'320,000',g:'+12%'},{a:'🏢 مشروع C',e:'🏢 Project C',v:'218,000',g:'-2%'}],
-rec:[{i:'📋',t:{ar:'مستخلص #12 — برج الأفق',en:'Claim #12 — Al Afaq Tower'},s:'CLM-2026-0012',a:'+85,000 ر.س',c:'pos'},{i:'👷',t:{ar:'رواتب عمال — أبريل',en:'Workers Payroll — April'},s:'PAY-2026-0004',a:'-42,000 ر.س',c:'neg'},{i:'📦',t:{ar:'توريد حديد تسليح',en:'Steel Supply'},s:'SUP-2026-0156',a:'-18,400 ر.س',c:'neg'}]},
+rec:[]},
 {id:'realstate',ico:'🏠',name:{ar:'عقارات',en:'Real Estate',fr:'Immobilier',de:'Immobilien',es:'Bienes raíces'},
 desc:{ar:'إيجار، بيع، إدارة عقارية',en:'Rent, sale, property mgmt',fr:'Location, vente',de:'Miete, Verkauf',es:'Alquiler, venta'},
 qa:[{i:'🏠',l:{ar:'عقارات',en:'Properties'}},{i:'📋',l:{ar:'عقود',en:'Contracts'}},{i:'💰',l:{ar:'إيجارات',en:'Rents'}},{i:'🧾',l:'inv'},{i:'📊',l:'rep'},{i:'🔑',l:{ar:'تسليم',en:'Handover'}},{i:'🏗️',l:{ar:'صيانة',en:'Maintenance'}},{i:'🧮',l:{ar:'VAT',en:'VAT'}}],
@@ -209,9 +240,163 @@ mods:[{i:'🏘️',n:{ar:'إدارة العقارات',en:'Property Management'}
 inv:[{i:'🏠',n:'شقة 3 غرف — حي الملقا',c:'سكني · AP-001',s:1,st:'ok'},{i:'🏢',n:'مكتب تجاري 200m²',c:'تجاري · OF-001',s:3,st:'ok'},{i:'🏭',n:'مستودع 500m²',c:'صناعي · WH-001',s:1,st:'low'},{i:'🌿',n:'أرض سكنية 400m²',c:'أراضي · LN-001',s:0,st:'out'}],
 cats:[{ar:'الكل',en:'All'},{ar:'سكني',en:'Residential'},{ar:'تجاري',en:'Commercial'},{ar:'صناعي',en:'Industrial'}],
 rep:[{a:'🏠 سكني',e:'🏠 Residential',v:'124,000',g:'+8%'},{a:'🏢 تجاري',e:'🏢 Commercial',v:'86,400',g:'+12%'},{a:'🌿 أراضي',e:'🌿 Land',v:'245,000',g:'+25%'}],
-rec:[{i:'💰',t:{ar:'إيجار شهري — برج الياسمين',en:'Monthly Rent — Al Jasmine'},s:'RNT-2026-0089',a:'+8,500 ر.س',c:'pos'},{i:'📋',t:{ar:'عقد إيجار جديد — مكتب',en:'New Lease — Office'},s:'CNT-2026-0034',a:'+45,000 ر.س',c:'pos'},{i:'🔑',t:{ar:'طلب صيانة — شقة 12',en:'Maintenance — Apt 12'},s:'MNT-2026-0023',a:'-1,200 ر.س',c:'neg'}]},
+rec:[]},
 ];
 let CL='ar', SL='ar', CS=SECTORS[0], UN='';
+
+// ════════════════════════════════════
+// DATA STORE — All real user data lives here
+// ════════════════════════════════════
+const STORE = {
+  invoices: [],
+  transactions: [],
+  products: [],
+  customers: [],
+  suppliers: [],
+  expenses: [],
+  settings: {
+    companyName: '',
+    vatNumber: '',
+    crNumber: '',
+    address: '',
+    city: '',
+    zatcaLinked: false,
+    currency: 'SAR',
+    vatRate: 15,
+    fiscalYear: new Date().getFullYear(),
+  }
+};
+
+// KPI calculator — always from real data
+function calcKPIs(){
+  const now = new Date();
+  const thisMonth = now.getMonth();
+  const thisYear = now.getFullYear();
+  // Revenue: sum of paid invoices this month
+  const rev = STORE.invoices
+    .filter(i=>i.st==='paid' && new Date(i.dateRaw).getMonth()===thisMonth && new Date(i.dateRaw).getFullYear()===thisYear)
+    .reduce((s,i)=>s+parseFloat(i.totalNum||0),0);
+  // Expenses this month
+  const exp = STORE.expenses
+    .filter(e=>new Date(e.dateRaw).getMonth()===thisMonth && new Date(e.dateRaw).getFullYear()===thisYear)
+    .reduce((s,e)=>s+parseFloat(e.amount||0),0);
+  // Invoice count this month
+  const invC = STORE.invoices.filter(i=>new Date(i.dateRaw).getMonth()===thisMonth && new Date(i.dateRaw).getFullYear()===thisYear).length;
+  // Stock total units
+  const stkC = STORE.products.reduce((s,p)=>s+parseInt(p.qty||0),0);
+  return {rev, exp, invC, stkC};
+}
+
+function updateKPIs(){
+  const k = calcKPIs();
+  const fmt = n => n===0?'0.00':n.toLocaleString('en-SA',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const el = id => $(id);
+  if(el('kv1')) el('kv1').textContent = fmt(k.rev);
+  if(el('kv2')) el('kv2').textContent = fmt(k.exp);
+  if(el('kv3')) el('kv3').textContent = k.invC;
+  if(el('kv4')) el('kv4').textContent = k.stkC;
+  // AI insight
+  const ai = $('ai-txt');
+  if(ai){
+    if(k.invC===0 && k.rev===0){
+      ai.innerHTML = CL==='ar'
+        ? '🚀 <strong style="color:var(--p)">ابدأ الآن!</strong> أنشئ أول فاتورة إلكترونية أو أضف منتجاتك للمخزون. سيحلل المساعد الذكي بياناتك تلقائياً.'
+        : '🚀 <strong style="color:var(--p)">Get started!</strong> Create your first invoice or add products to inventory. AI will auto-analyze your data.';
+    } else {
+      const profit = k.rev - k.exp;
+      ai.innerHTML = CL==='ar'
+        ? `📊 إجمالي الإيرادات <strong style="color:var(--p)">${fmt(k.rev)} ر.س</strong> | صافي الربح <strong style="color:var(--g)">${fmt(profit)} ر.س</strong> | ${k.invC} فاتورة هذا الشهر`
+        : `📊 Total Revenue <strong style="color:var(--p)">${fmt(k.rev)} SAR</strong> | Net Profit <strong style="color:var(--g)">${fmt(profit)} SAR</strong> | ${k.invC} invoices this month`;
+    }
+  }
+  updateChart();
+}
+
+// Chart with real data
+function updateChart(){
+  const bars = document.querySelectorAll('.bars .bw');
+  const months = [];
+  for(let i=5;i>=0;i--){
+    const d = new Date(); d.setMonth(d.getMonth()-i);
+    const m=d.getMonth(), y=d.getFullYear();
+    const rev = STORE.invoices.filter(inv=>inv.st==='paid'&&new Date(inv.dateRaw).getMonth()===m&&new Date(inv.dateRaw).getFullYear()===y).reduce((s,inv)=>s+parseFloat(inv.totalNum||0),0);
+    const exp = STORE.expenses.filter(e=>new Date(e.dateRaw).getMonth()===m&&new Date(e.dateRaw).getFullYear()===y).reduce((s,e)=>s+parseFloat(e.amount||0),0);
+    months.push({rev,exp});
+  }
+  const maxVal = Math.max(...months.map(m=>Math.max(m.rev,m.exp)),1);
+  let bi=0;
+  bars.forEach(bw=>{
+    const bar=bw.querySelector('.bar');
+    if(!bar)return;
+    const idx=Math.floor(bi/2), isExp=bi%2===1;
+    const val=isExp?months[idx]?.exp:months[idx]?.rev;
+    const pct=Math.max((val/maxVal)*100,2);
+    bar.style.height=pct+'%';
+    bi++;
+  });
+}
+
+// Empty state component
+function emptyState(title, sub, icon='📭'){
+  return \`<div style="text-align:center;padding:32px 16px;color:var(--mu)">
+    <div style="font-size:3rem;margin-bottom:12px;opacity:.6">\${icon}</div>
+    <div style="font-size:.9rem;font-weight:700;color:var(--m);margin-bottom:6px">\${title}</div>
+    <div style="font-size:.74rem;line-height:1.6">\${sub}</div>
+  </div>\`;
+}
+
+// Generate ZATCA-compliant invoice number
+function genInvNum(){
+  const n = STORE.invoices.length+1;
+  const y = new Date().getFullYear();
+  return \`INV-\${y}-\${String(n).padStart(4,'0')}\`;
+}
+
+// Add invoice to store
+function saveInvoice(inv){
+  inv.id = 'inv_'+Date.now();
+  inv.dateRaw = new Date().toISOString();
+  inv.num = genInvNum();
+  STORE.invoices.push(inv);
+  // Add to transactions
+  STORE.transactions.push({
+    ico:'🧾', title: inv.client||'—', ref: inv.num,
+    date: new Date().toLocaleDateString(CL==='ar'?'ar-SA':'en-SA'),
+    amount: '+'+inv.total+' '+(CL==='ar'?'ر.س':'SAR'),
+    type:'in', id:'tx_'+Date.now()
+  });
+  saveToStorage();
+  updateKPIs();
+  buildRec();
+  buildInvList();
+}
+
+// Add expense
+function saveExpense(exp){
+  exp.id = 'exp_'+Date.now();
+  exp.dateRaw = new Date().toISOString();
+  STORE.expenses.push(exp);
+  STORE.transactions.push({
+    ico:'📤', title: exp.title||'—', ref: 'EXP-'+Date.now().toString().slice(-6),
+    date: new Date().toLocaleDateString(CL==='ar'?'ar-SA':'en-SA'),
+    amount: '-'+exp.amount+' '+(CL==='ar'?'ر.س':'SAR'),
+    type:'out', id:'tx_'+Date.now()
+  });
+  saveToStorage();
+  updateKPIs();
+  buildRec();
+}
+
+// LocalStorage persistence
+function saveToStorage(){
+  try{localStorage.setItem('ff_data',JSON.stringify({invoices:STORE.invoices,transactions:STORE.transactions,products:STORE.products,expenses:STORE.expenses,customers:STORE.customers,settings:STORE.settings}));}catch(e){}
+}
+function loadFromStorage(){
+  try{
+    const d=localStorage.getItem('ff_data');
+    if(d){const p=JSON.parse(d);Object.assign(STORE,p);}
+  }catch(e){}
+}
 const $=id=>document.getElementById(id);
 const tx=k=>(T[CL]&&T[CL][k])||T.en[k]||k;
 const ts=o=>o[CL]||o.en||o.ar||Object.values(o)[0];
@@ -234,7 +419,119 @@ function pickLang(c){
 SL=c; CL=c;
 const l=LANGS.find(x=>x.c===c);
 setDir(l.d);
+
+// ══ SUBMIT INVOICE ══
+function submitInvoice(mode){
+  const clientEl=document.querySelector('#newInvPage .ff');
+  const client=clientEl?clientEl.value.trim():'';
+  if(!client){toast(CL==='ar'?'⚠️ أدخل اسم العميل':'⚠️ Enter client name');return;}
+  const total=(window._invTotal||0).toLocaleString('en-SA',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const inv={client,total,totalNum:window._invTotal||0,sub:window._invSub||0,vat:window._invVat||0,
+    st:mode==='issued'?'pend':'draft',
+    date:new Date().toLocaleDateString(CL==='ar'?'ar-SA':'en-SA'),dateRaw:new Date().toISOString()};
+  saveInvoice(inv);
+  toast(mode==='issued'
+    ?(CL==='ar'?'✅ تم إصدار الفاتورة بنجاح':'✅ Invoice issued')
+    :(CL==='ar'?'💾 تم حفظ المسودة':'💾 Draft saved'));
+  setTimeout(()=>navTo('invPage','bn-inv'),700);
+}
+
+// ══ RECALC INVOICE ══
+function recalcInv(){
+  let sub=0;
+  document.querySelectorAll('#itmTbl tr').forEach(tr=>{
+    const qty=parseFloat(tr.querySelector('.inv-item-qty')?.value||0);
+    const price=parseFloat(tr.querySelector('.inv-item-price')?.value||0);
+    const tot=qty*price; sub+=tot;
+    const td=tr.querySelector('.inv-item-total');
+    if(td) td.textContent=tot.toLocaleString('en-SA',{minimumFractionDigits:2,maximumFractionDigits:2});
+  });
+  const vat=sub*(STORE.settings.vatRate/100);
+  const total=sub+vat;
+  const fmt=n=>n.toLocaleString('en-SA',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const tamts=document.querySelectorAll('.tamt');
+  const sfx=' '+(CL==='ar'?'ر.س':'SAR');
+  if(tamts[0]) tamts[0].textContent=fmt(sub)+sfx;
+  if(tamts[1]) tamts[1].textContent=fmt(vat)+sfx+' ('+(STORE.settings.vatRate||15)+'%)';
+  if(tamts[2]) tamts[2].textContent='0.00'+sfx;
+  if(tamts[3]) tamts[3].textContent=fmt(total)+sfx;
+  window._invSub=sub; window._invVat=vat; window._invTotal=total;
+}
+
+// ══ FILTER INVOICES ══
+function filterInvoices(el){
+  const txt=(el?el.textContent:'').toLowerCase();
+  const isAll=txt.includes('كل')||txt.includes('all')||txt.includes('(47)')||txt.includes('(0)');
+  document.querySelectorAll('#invList .inv-card').forEach(card=>{
+    const st=card.querySelector('.inv-st');
+    if(!st){card.style.display='';return;}
+    const paid=st.classList.contains('st-p');
+    const pend=st.classList.contains('st-w');
+    const over=st.classList.contains('st-o');
+    const draft=st.classList.contains('st-d');
+    const show=isAll
+      ||(txt.includes(tx('paid').toLowerCase())&&paid)
+      ||(txt.includes(tx('pend').toLowerCase())&&pend)
+      ||(txt.includes(tx('over').toLowerCase())&&over)
+      ||(txt.includes(tx('draft').toLowerCase())&&draft);
+    card.style.display=show?'':'none';
+  });
+}
+
+// ══ FILTER STOCK ══
+function filterStock(catText){
+  const isAll=!catText||catText==='الكل'||catText==='All';
+  document.querySelectorAll('#stkList .prod-card').forEach(card=>{
+    const cat=card.querySelector('.prod-cat');
+    if(!cat){card.style.display='';return;}
+    card.style.display=(isAll||cat.textContent.includes(catText))?'':'none';
+  });
+}
+
+// ══ ADD PRODUCT ══
+function addProduct(name,qty,price,cat,ico){
+  if(!name) return;
+  STORE.products.push({id:'prd_'+Date.now(),name,qty:parseInt(qty)||0,
+    price:parseFloat(price)||0,cat:cat||'',ico:ico||'📦',dateRaw:new Date().toISOString()});
+  saveToStorage(); updateKPIs(); buildStkList();
+}
+
+// ══ SHOW VAT SETTINGS ══
+function showVatSettings(){
+  toast(CL==='ar'
+    ?'🧮 VAT 15% — وفقاً لنظام ضريبة القيمة المضافة السعودي (المرسوم الملكي م/113)'
+    :'🧮 VAT 15% — Per Saudi VAT Law (Royal Decree M/113)');
+}
+
 buildLangGrid();
+loadFromStorage();
+
+// View invoice detail
+function viewInv(id){
+  const inv = STORE.invoices.find(i=>i.id===id);
+  if(!inv) return;
+  toast((CL==='ar'?'📄 فاتورة: ':'📄 Invoice: ')+inv.num+' — '+inv.client);
+}
+
+// VAT settings popup
+function showVatSettings(){
+  toast(CL==='ar'
+    ?'🧮 ضريبة القيمة المضافة: 15% — وفقاً للنظام السعودي (الأمر الملكي أ/م/113)'
+    :'🧮 VAT: 15% — Per Saudi VAT Law (Royal Decree M/113)');
+}
+
+// Add product to inventory
+function addProduct(name, qty, price, cat, ico){
+  if(!name||!qty) return;
+  STORE.products.push({
+    id:'prd_'+Date.now(), name, qty:parseInt(qty),
+    price:parseFloat(price||0), cat:cat||'', ico:ico||'📦',
+    dateRaw:new Date().toISOString()
+  });
+  saveToStorage();
+  updateKPIs();
+  buildStkList();
+}
 const btn=$('langBtn');
 if(btn) btn.textContent=tx('cont');
 const hd=$('lang-head');
@@ -413,23 +710,24 @@ r.innerHTML=CS.rec.map(x=>`
 function buildInvList(){
 const el=$('invList');
 if(!el)return;
-const statuses=[
-{l:'st-p',t:tx('paid')},{l:'st-w',t:tx('pend')},{l:'st-o',t:tx('over')},{l:'st-p',t:tx('paid')}
-];
-const clients=['شركة الأفق للتقنية','مجموعة الريادة','الشركة الذهبية','شركة النخبة'];
-const nums=['INV-2026-0047','INV-2026-0046','INV-2026-0045','INV-2026-0044'];
-const amounts=['12,500.00','8,750.00','23,100.00','5,400.00'];
-el.innerHTML=statuses.map((st,i)=>`
-<div class="inv-card">
-<div class="inv-top">
-<div><div class="inv-num">${nums[i]}</div><div class="inv-cli">${clients[i]}</div></div>
-<div class="inv-st ${st.l}">${st.t}</div>
-</div>
-<div class="inv-bot">
-<div class="inv-dt">📅 ${['12','09','01','28'][i]} ${CL==='ar'?'مايو 2026':'May 2026'}</div>
-<div class="inv-amt">${amounts[i]} ${CL==='ar'?'ر.س':'SAR'}</div>
-</div>
-</div>`).join('');
+if(STORE.invoices.length===0){
+  el.innerHTML=emptyState(
+    CL==='ar'?'لا توجد فواتير بعد':'No invoices yet',
+    CL==='ar'?'اضغط + جديد لإنشاء فاتورتك الأولى':'Tap + New to create your first invoice',
+    '🧾');
+  return;
+}
+el.innerHTML=STORE.invoices.slice().reverse().map(inv=>`
+  <div class="inv-card" onclick="toast('${CL==='ar'?'📄 فاتورة':'📄 Invoice'}: '+inv.num)">
+    <div class="inv-top">
+      <div><div class="inv-num">${inv.num}</div><div class="inv-cli">${inv.client}</div></div>
+      <div class="inv-st ${inv.st==='paid'?'st-p':inv.st==='pend'?'st-w':inv.st==='draft'?'st-d':'st-o'}">${inv.st==='paid'?tx('paid'):inv.st==='pend'?tx('pend'):inv.st==='draft'?tx('draft'):tx('over')}</div>
+    </div>
+    <div class="inv-bot">
+      <div class="inv-dt">📅 ${inv.date}</div>
+      <div class="inv-amt">${inv.total} ${CL==='ar'?'ر.س':'SAR'}</div>
+    </div>
+  </div>`).join('');
 }
 function buildRepTable(){
 const b=$('repTblBody');
