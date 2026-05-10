@@ -1,0 +1,423 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ═══════════════════════════════════
+// USERS & AUTH
+// ═══════════════════════════════════
+model User {
+  id          String    @id @default(uuid())
+  username    String    @unique
+  email       String    @unique
+  password    String
+  fullName    String
+  phone       String?
+  role        Role      @default(ACCOUNTANT)
+  isActive    Boolean   @default(true)
+  deviceId    String?
+  lastLogin   DateTime?
+  loginCount  Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  company     Company?  @relation(fields: [companyId], references: [id])
+  companyId   String?
+  branch      Branch?   @relation(fields: [branchId], references: [id])
+  branchId    String?
+
+  invoices    Invoice[]
+  expenses    Expense[]
+  auditLogs   AuditLog[]
+  sessions    Session[]
+
+  @@index([companyId, branchId])
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  deviceId  String?
+  ipAddress String?
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  MANAGER
+  ACCOUNTANT
+  CASHIER
+  VIEWER
+}
+
+// ═══════════════════════════════════
+// COMPANY & BRANCHES
+// ═══════════════════════════════════
+model Company {
+  id              String   @id @default(uuid())
+  nameAr          String
+  nameEn          String?
+  vatNumber       String   @unique
+  crNumber        String   @unique
+  address         String?
+  city            String?
+  country         String   @default("SA")
+  phone           String?
+  email           String?
+  logo            String?
+  sector          String   @default("company")
+  vatRate         Float    @default(15)
+  fiscalYearStart Int      @default(1)
+  currency        String   @default("SAR")
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  branches        Branch[]
+  users           User[]
+  invoices        Invoice[]
+  expenses        Expense[]
+  products        Product[]
+  customers       Customer[]
+  suppliers       Supplier[]
+  accounts        Account[]
+  journalEntries  JournalEntry[]
+  employees       Employee[]
+}
+
+model Branch {
+  id        String   @id @default(uuid())
+  name      String
+  address   String?
+  phone     String?
+  isMain    Boolean  @default(false)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  company   Company  @relation(fields: [companyId], references: [id])
+  companyId String
+  users     User[]
+  invoices  Invoice[]
+  @@index([companyId])
+}
+
+// ═══════════════════════════════════
+// CHART OF ACCOUNTS (شجرة الحسابات)
+// ═══════════════════════════════════
+model Account {
+  id          String      @id @default(uuid())
+  code        String
+  nameAr      String
+  nameEn      String?
+  type        AccountType
+  parentId    String?
+  parent      Account?    @relation("AccountTree", fields: [parentId], references: [id])
+  children    Account[]   @relation("AccountTree")
+  isActive    Boolean     @default(true)
+  balance     Float       @default(0)
+  createdAt   DateTime    @default(now())
+
+  company     Company     @relation(fields: [companyId], references: [id])
+  companyId   String
+  journalLines JournalLine[]
+
+  @@unique([companyId, code])
+  @@index([companyId, type])
+}
+
+enum AccountType {
+  ASSET        // أصول
+  LIABILITY    // خصوم
+  EQUITY       // حقوق ملكية
+  REVENUE      // إيرادات
+  EXPENSE      // مصروفات
+}
+
+// ═══════════════════════════════════
+// JOURNAL ENTRIES (القيود اليومية)
+// ═══════════════════════════════════
+model JournalEntry {
+  id          String        @id @default(uuid())
+  entryNumber String
+  date        DateTime
+  description String
+  reference   String?
+  isPosted    Boolean       @default(false)
+  totalDebit  Float
+  totalCredit Float
+  createdAt   DateTime      @default(now())
+
+  company     Company       @relation(fields: [companyId], references: [id])
+  companyId   String
+  lines       JournalLine[]
+  invoice     Invoice?      @relation(fields: [invoiceId], references: [id])
+  invoiceId   String?
+
+  @@index([companyId, date])
+}
+
+model JournalLine {
+  id             String       @id @default(uuid())
+  debit          Float        @default(0)
+  credit         Float        @default(0)
+  description    String?
+
+  journalEntry   JournalEntry @relation(fields: [journalEntryId], references: [id])
+  journalEntryId String
+  account        Account      @relation(fields: [accountId], references: [id])
+  accountId      String
+}
+
+// ═══════════════════════════════════
+// INVOICES - ZATCA COMPLIANT
+// ═══════════════════════════════════
+model Invoice {
+  id              String        @id @default(uuid())
+  invoiceNumber   String
+  uuid            String        @unique @default(uuid())
+  type            InvoiceType   @default(TAX_INVOICE)
+  status          InvoiceStatus @default(DRAFT)
+
+  // Client Info
+  clientName      String
+  clientVat       String?
+  clientCr        String?
+  clientAddress   String?
+
+  // Amounts
+  subtotal        Float
+  discountAmount  Float         @default(0)
+  vatAmount       Float
+  total           Float
+  vatRate         Float         @default(15)
+
+  // Dates
+  issueDate       DateTime      @default(now())
+  dueDate         DateTime?
+
+  // ZATCA
+  qrCode          String?       @db.Text
+  xmlContent      String?       @db.Text
+  zatcaStatus     String?
+  zatcaResponse   String?
+
+  // Notes
+  notes           String?
+  paymentMethod   String?
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  company         Company       @relation(fields: [companyId], references: [id])
+  companyId       String
+  branch          Branch?       @relation(fields: [branchId], references: [id])
+  branchId        String?
+  createdBy       User          @relation(fields: [userId], references: [id])
+  userId          String
+  items           InvoiceItem[]
+  journalEntries  JournalEntry[]
+  payments        Payment[]
+
+  @@index([companyId, status, issueDate])
+  @@index([invoiceNumber])
+}
+
+enum InvoiceType {
+  TAX_INVOICE       // فاتورة ضريبية
+  SIMPLIFIED        // فاتورة مبسطة
+  CREDIT_NOTE       // إشعار دائن
+  DEBIT_NOTE        // إشعار مدين
+}
+
+enum InvoiceStatus {
+  DRAFT
+  ISSUED
+  PAID
+  PARTIAL
+  OVERDUE
+  CANCELLED
+}
+
+model InvoiceItem {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  quantity    Float
+  unitPrice   Float
+  discount    Float    @default(0)
+  vatRate     Float    @default(15)
+  vatAmount   Float
+  total       Float
+  barcode     String?
+
+  invoice     Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  invoiceId   String
+  product     Product? @relation(fields: [productId], references: [id])
+  productId   String?
+}
+
+model Payment {
+  id        String   @id @default(uuid())
+  amount    Float
+  method    String
+  reference String?
+  date      DateTime @default(now())
+  notes     String?
+
+  invoice   Invoice  @relation(fields: [invoiceId], references: [id])
+  invoiceId String
+}
+
+// ═══════════════════════════════════
+// PRODUCTS & INVENTORY
+// ═══════════════════════════════════
+model Product {
+  id           String   @id @default(uuid())
+  name         String
+  nameEn       String?
+  sku          String?
+  barcode      String?
+  category     String?
+  unit         String   @default("قطعة")
+  costPrice    Float    @default(0)
+  sellingPrice Float    @default(0)
+  vatRate      Float    @default(15)
+  quantity     Float    @default(0)
+  minQuantity  Float    @default(0)
+  maxQuantity  Float?
+  expiryDate   DateTime?
+  image        String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  company      Company  @relation(fields: [companyId], references: [id])
+  companyId    String
+  invoiceItems InvoiceItem[]
+  stockMovements StockMovement[]
+
+  @@index([companyId, category])
+  @@index([barcode])
+}
+
+model StockMovement {
+  id        String    @id @default(uuid())
+  type      String    // IN, OUT, ADJUST
+  quantity  Float
+  reason    String?
+  reference String?
+  date      DateTime  @default(now())
+
+  product   Product   @relation(fields: [productId], references: [id])
+  productId String
+}
+
+// ═══════════════════════════════════
+// CUSTOMERS & SUPPLIERS
+// ═══════════════════════════════════
+model Customer {
+  id          String   @id @default(uuid())
+  name        String
+  phone       String?
+  email       String?
+  vatNumber   String?
+  crNumber    String?
+  address     String?
+  city        String?
+  totalSales  Float    @default(0)
+  balance     Float    @default(0)
+  loyaltyPts  Int      @default(0)
+  loyaltyLevel String  @default("bronze")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  company     Company  @relation(fields: [companyId], references: [id])
+  companyId   String
+  @@index([companyId])
+}
+
+model Supplier {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String?
+  email     String?
+  vatNumber String?
+  address   String?
+  balance   Float    @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  company   Company  @relation(fields: [companyId], references: [id])
+  companyId String
+}
+
+// ═══════════════════════════════════
+// EXPENSES
+// ═══════════════════════════════════
+model Expense {
+  id          String   @id @default(uuid())
+  title       String
+  amount      Float
+  vatAmount   Float    @default(0)
+  category    String
+  reference   String?
+  date        DateTime @default(now())
+  notes       String?
+  receipt     String?
+
+  company     Company  @relation(fields: [companyId], references: [id])
+  companyId   String
+  createdBy   User     @relation(fields: [userId], references: [id])
+  userId      String
+  @@index([companyId, date])
+}
+
+// ═══════════════════════════════════
+// EMPLOYEES & HR
+// ═══════════════════════════════════
+model Employee {
+  id          String   @id @default(uuid())
+  name        String
+  position    String?
+  department  String?
+  salary      Float    @default(0)
+  phone       String?
+  email       String?
+  nationalId  String?
+  iqamaNumber String?
+  hireDate    DateTime?
+  status      String   @default("active")
+  createdAt   DateTime @default(now())
+
+  company     Company  @relation(fields: [companyId], references: [id])
+  companyId   String
+}
+
+// ═══════════════════════════════════
+// AUDIT LOGS
+// ═══════════════════════════════════
+model AuditLog {
+  id        String   @id @default(uuid())
+  action    String
+  entity    String
+  entityId  String?
+  oldData   String?  @db.Text
+  newData   String?  @db.Text
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  @@index([userId, createdAt])
+  @@index([entity, entityId])
+}
